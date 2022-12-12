@@ -1,0 +1,1926 @@
+@charset "utf-8";
+
+.layer-pop-wrap {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0 !important;
+  z-index: 20;
+}
+.layer-pop-wrap .layer-pop {
+  width: 96%;
+  margin: 2%;
+  height: 96%;
+  padding: 144px 0 50px;
+  background: #fff;
+  z-index: 30;
+}
+.layer-pop-wrap .pop-cont {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+.layer-pop-wrap .pop-cont a.layer-close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+.pop-scroll {
+  overflow-x: hidden;
+  width: 100%;
+  max-height: 80%;
+  position: absolute;
+  left: 0;
+  top: 10%;
+  border: 1px solid #000;
+}
+
+/* 도움요청 전화걸기 리스트 */
+.phone-num-list {
+  width: 100%;
+  height: 100%;
+  font-size: 15px;
+  padding: 80px 58px 50px;
+}
+.phone-num-list > div {
+  overflow-y: auto;
+  height: 100%;
+}
+.phone-num-list ul li {
+  display: block;
+  border-bottom: 1px solid #a3caff;
+}
+.phone-num-list ul li a {
+  display: block;
+  position: relative;
+  padding: 8px 0 8px 59px;
+}
+.phone-num-list ul li a:after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 10px;
+  display: inline-block;
+  width: 41px;
+  height: 41px;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/icon_phone.png")
+    no-repeat;
+  background-size: 41px;
+}
+.phone-num-list ul li a:hover:after {
+  background-position: 0 -41px;
+}
+.phone-num-list ul li a strong {
+  display: block;
+  color: #a3caff;
+}
+.phone-num-list ul li a:hover strong {
+  color: #fff;
+}
+.phone-num-list ul li a span {
+  display: block;
+  color: #fff;
+}
+
+/* 녹화영상 */
+.real-time-video {
+  padding-top: 160px;
+}
+.video-img-pop {
+  position: relative;
+}
+.video-img-pop .img {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  text-align: center;
+}
+.video-img-pop .img .img-wrap {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  background: #151515;
+}
+.video-img-pop .img > div,
+.video-img-pop .img > div > div {
+  height: 240px;
+}
+.video-img-pop .img > div.loading {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  background: #33373f;
+}
+.video-img-pop .img > div.loading p {
+  position: absolute;
+  left: 0;
+  bottom: 50px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 15px;
+}
+.video-img-pop .img > div.loading .img {
+  display: block;
+  height: 40px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -20px;
+}
+.video-img-pop .img > div.loading .img img {
+  width: 150px;
+  height: 40px;
+  display: block;
+  margin: auto;
+}
+.video-img-pop .img > div.loading.up {
+  z-index: 10;
+  display: block;
+}
+.video-img-pop .img img {
+  width: 100%;
+  height: 240px;
+}
+.video-img-pop .play-btn {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  margin-top: -25px;
+  z-index: 999;
+}
+.video-img-pop .play-btn button {
+  width: 51px;
+  height: 51px;
+  border: 0;
+  padding: 0;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/btn_video_play.png")
+    no-repeat;
+  background-size: 51px;
+  font-size: 0;
+  line-height: 0;
+  text-indent: -9999px;
+}
+.video-img-pop .play-btn button.play {
+  background-position: 0 0;
+  outline: none;
+} /*161214 outline삭제*/
+.video-img-pop .play-btn button.stop {
+  background-position: 0 -51px;
+  outline: none;
+} /*161214 outline삭제*/
+.real-time-video .page-close {
+  width: 39px;
+  height: 39px;
+  z-index: 10;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/common/bg_btn_close01.png")
+    no-repeat;
+  background-size: 39px;
+}
+.real-time-video .page-close:hover {
+  background-position: 0 -39px;
+}
+/*161207 시간추가*/
+.video-img-pop .img .img-wrap > div > span.filming-time {
+  display: block;
+  color: #fff;
+  position: absolute;
+  width: 100%;
+  text-align: right;
+  padding: 0 12px;
+  left: 0;
+  top: 0px;
+  background: rgba(0, 0, 0, 0.2);
+  height: 32px;
+  line-height: 20px;
+}
+.video-img-pop .img .img-wrap > div > span.filming-time .time,
+.video-img-pop .img .img-wrap > div > span.filming-time .date {
+  display: inline-block;
+  font-size: 15px;
+  height: 24px;
+  line-height: 20px;
+  margin-top: 6px;
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
+  padding: 0 9px 0 0;
+}
+.video-img-pop .img .img-wrap > div > span.filming-time .date {
+  padding: 0;
+}
+
+/*161202 실시간영상 progressBar  iphone5대응*/
+@media only screen and (max-device-width: 320px) {
+  .real-time-video {
+    padding-top: 100px;
+  }
+}
+
+/* 통합홈로그 필터 */
+.log-filter {
+  padding: 55px 50px;
+}
+.log-filter em {
+  display: block;
+  padding: 41px 0 4px 0;
+  border-bottom: 2px solid #c5d6eb;
+  font-size: 18px;
+  color: #11438c;
+}
+.log-filter .period {
+  position: relative;
+  width: 100%;
+  height: 75px;
+  padding-top: 22px;
+  border-bottom: 1px solid #dfe5f2;
+  color: #a0b7dd;
+}
+.log-filter .period .desh {
+  width: auto;
+  position: absolute;
+  left: 50%;
+  top: 27px;
+  margin-left: -5px;
+}
+.log-filter .period > span {
+  float: left;
+  width: 50%;
+}
+.log-filter .period > span input {
+  margin-top: 0;
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  padding: 4px 0 0 0;
+  text-align: center;
+  background: none;
+  border: 0;
+  font-size: 13px;
+  color: #a0b7dd;
+}
+.log-filter .period > span > span {
+  display: block;
+  padding: 2px 8px 0 23px;
+  height: 30px;
+  border: 2px solid #99b3c8;
+  border-radius: 20px;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/bg_input_calendar.png")
+    no-repeat 8px center;
+  background-size: 11px;
+}
+.log-filter .period .form2 span {
+  margin-left: 7px;
+}
+.log-filter .period .form1 span {
+  margin-right: 7px;
+}
+.log-filter .list {
+  width: 100%;
+  padding-bottom: 35px;
+  border-bottom: 1px solid #dfe5f2;
+}
+.log-filter .list ul {
+  display: none;
+}
+.log-filter .list.on ul {
+  display: block;
+}
+.log-filter .list > em > a {
+  display: block;
+  position: relative;
+}
+.log-filter .list > em > a:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 11px;
+  display: inline-block;
+  width: 16px;
+  height: 10px;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/bg_clogfilter_arw.png")
+    no-repeat 0 0;
+  background-size: 16px;
+}
+.log-filter .list > em > a:hover:after {
+  background-position: 0 -10px;
+}
+.log-filter .list.on > em > a:after {
+  background-position: 0 -20px;
+}
+.log-filter .list.on > em > a:hover:after {
+  background-position: 0 -30px;
+}
+.log-filter .list ul {
+  margin-bottom: -28px;
+  padding: 22px 0 8px 0;
+}
+.log-filter .list ul li {
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 6px;
+}
+.log-filter .list .choice {
+  float: left;
+  width: 55px;
+}
+.log-filter .list .text {
+  display: block;
+  margin-left: 53px;
+  padding-top: 8px;
+  font-size: 17px;
+  color: #333;
+}
+.log-filter .list label.chk-skin {
+  position: relative;
+  display: inline-block;
+  height: 41px;
+  color: #fff;
+  font-size: 20px;
+}
+.log-filter .list.user label.chk-skin:after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  content: "";
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/common/bg_checkbox03_2.png")
+    no-repeat 0 0;
+  background-size: 40px;
+}
+.log-filter .list.activity label.chk-skin:after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  content: "";
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/common/bg_checkbox03_2.png")
+    no-repeat 0 0;
+  background-size: 40px;
+}
+.log-filter .list label.chk-skin input[type="checkbox"] {
+  position: relative;
+  width: 41px;
+  height: 41px;
+  margin: 0 10px 0 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  z-index: 1;
+  vertical-align: -5px;
+  cursor: pointer;
+}
+.log-filter .list label.chk-skin.checked:after {
+  background-position: 0 -40px;
+}
+.log-filter .btn-area {
+  padding: 25px 0;
+}
+.log-filter .btn-area a:first-child {
+  margin: 0;
+}
+.log-filter .btn-area a {
+  display: inline-block;
+  margin-left: 5px;
+  width: 100%;
+  line-height: 45px;
+  background: #0183e2;
+  color: #fff;
+  font-size: 17px;
+  border-radius: 25px;
+}
+.log-filter .btn-area a:hover {
+  background: #3f72c3;
+  color: #fff;
+}
+.log-filter .page-close {
+  width: 39px;
+  height: 39px;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/common/bg_btn_close.png")
+    no-repeat;
+  background-size: 39px;
+}
+.log-filter .page-close:hover {
+  background-position: 0 -39px;
+}
+
+/* 허브컨트롤러설정 */
+.herb-control-reset,
+.herb-control-identify,
+.herb-control-reset-info {
+  padding: 35px 20px 0;
+}
+.herb-control-reset ul {
+  padding: 31px 0 0;
+}
+.herb-control-reset ul li {
+  display: block;
+  padding: 0 10px 5px 7px;
+  margin-left: 17px;
+  text-indent: -14px;
+  font-size: 13px;
+  color: #1b3552;
+}
+.herb-control-reset ul li:before {
+  content: "";
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-right: 5px;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/bg_guide_bul.png")
+    no-repeat 0 0;
+  background-size: 9px;
+  vertical-align: 1px;
+}
+.herb-control-reset ul li span {
+  display: block;
+  margin-left: 17px;
+  text-indent: -14px;
+  color: #005de7;
+}
+.herb-control-reset-info p.txt {
+  font-size: 16px;
+  line-height: 30px;
+}
+.herb-control-reset-info p.img {
+  margin-top: 45px;
+  text-align: center;
+}
+.herb-control-reset-info p img {
+  width: 80%;
+  height: 80%;
+}
+
+.herb-control-identify strong.stit,
+.herb-control-reset strong.stit {
+  padding: 30px 0 7px;
+  display: block;
+  font-size: 17px;
+  color: #333;
+  text-align: center;
+}
+.herb-control-identify p,
+.herb-control-reset p {
+  padding-bottom: 20px;
+  font-size: 14px;
+  color: #005de7;
+  text-align: center;
+  border-bottom: 1px solid #dfe5f2;
+}
+.herb-control-identify p.reg {
+  border: 0;
+  padding: 0;
+  font-size: 15px;
+  color: #333;
+}
+.herb-control-identify p.reg em {
+  font-weight: bold;
+}
+.herb-control-identify ul {
+  padding: 35px 20px 113px;
+  text-align: center;
+} /* 2016.07.28 좌우 간격 조절*/
+.herb-control-identify ul li {
+  float: left;
+  width: 33.3%;
+  text-align: center;
+} /* 2016.07.28 width 수정 */
+.herb-control-identify ul li span {
+  display: inline-block;
+  width: 59px;
+  height: 59px;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/icon_herb_control.png")
+    no-repeat 0 0;
+  background-size: 60px;
+}
+.herb-control-identify ul li span.clear {
+  background-position: 0 0;
+  color: #0054a6;
+}
+.herb-control-identify ul li span.guard {
+  background-position: 0 -60px;
+  color: #00d07f;
+}
+.herb-control-identify ul li span.emergency {
+  background-position: 0 -120px;
+  color: #ff795f;
+}
+.herb-control-identify ul li span em {
+  display: block;
+  padding-top: 65px;
+  font-size: 15px;
+}
+.herb-control-identify .btn-area {
+  padding: 30px 5px 0;
+}
+.herb-control-identify .btn-area a {
+  display: block;
+  background: #0183e2;
+  font-size: 17px;
+  color: #fff;
+  line-height: 45px;
+  border-radius: 25px;
+}
+.herb-control-identify .btn-area a:hover {
+  background: #3f72c3;
+}
+/*161205 허브컨트롤러 해제 패턴 재설정 안내 추가*/
+.herb-control-reset-info.Modified {
+  padding-top: 30px;
+}
+.herb-control-reset-info.Modified p.txt {
+  line-height: 1.4em;
+  font-size: 15px;
+  color: #333;
+  display: inline-block;
+} /*color추가*/
+.herb-control-reset-info.Modified p.txt > span {
+  padding-top: 5px;
+  display: inline-block;
+} /*161216 추가*/
+.herb-control-reset-info.Modified p.img {
+  margin: 20px 0 10px 0;
+}
+.herb-control-reset-info.Modified p.img img {
+  width: 208px;
+  height: 208px;
+}
+.herb-control-reset-info.Modified p.orderTitle {
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: bold;
+  color: #005de7;
+  display: none; /*data가 있을때는 show 없을땐 hide*/
+}
+.herb-control-reset-info.Modified p.orderTitle:before {
+  content: "";
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-right: 6px;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/bg_guide_bul.png")
+    no-repeat 0 0;
+  background-size: 9px;
+  vertical-align: 1px;
+}
+.herb-control-reset-info.Modified ul.lastOrder {
+  padding-top: 15px;
+  display: none; /*data가 있을때는 show 없을땐 hide*/
+}
+.herb-control-reset-info.Modified ul.lastOrder li {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 16px;
+  width: 24%;
+  margin: 2px;
+  vertical-align: middle;
+  text-align: center;
+}
+.herb-control-reset-info.Modified ul.lastOrder li:nth-child(even) {
+  border: none;
+  padding: 0;
+  width: 5%;
+  font-size: 12px;
+  color: #aaa;
+  height: 42px;
+}
+.herb-control-reset-info.Modified ul.lastOrder li:nth-child(even):after {
+  content: "";
+  width: 100%;
+  height: 16px;
+  display: inline-block;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/btn_more.png")
+    no-repeat 0 0;
+  background-size: 10px;
+  margin-bottom: 18px;
+}
+.herb-control-reset-info.Modified ul.lastOrder li:first-child {
+  margin-left: 3%;
+}
+/*161206*/
+.herb-control-reset-info.Modified ul.lastOrder li span {
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/icon_herb_control.png")
+    no-repeat 0 0;
+  background-size: 60px;
+}
+.herb-control-reset-info.Modified ul.lastOrder li span.guard {
+  background-position: 0 -60px;
+  color: #00d07f;
+}
+.herb-control-reset-info.Modified ul.lastOrder li span.clear {
+  background-position: 0 0;
+  color: #0054a6;
+}
+.herb-control-reset-info.Modified ul.lastOrder li span.emergency {
+  background-position: 0 -120px;
+  color: #ff795f;
+}
+.herb-control-reset-info.Modified ul.lastOrder li span em {
+  display: block;
+  padding-top: 60px;
+  font-size: 15px;
+}
+
+@media only screen and (max-device-width: 320px) {
+  .herb-control-reset-info.Modified p.txt {
+    letter-spacing: -0.06em;
+  }
+  .herb-control-reset-info.Modified ul.lastOrder li {
+    padding: 18px 0;
+  }
+}
+
+/* 자동실행 등록 */
+.family-space.automatic p,
+.space-list.modify p.step3 {
+  padding: 0 20px 25px;
+  font-size: 17px;
+}
+.family-space.automatic p em,
+.space-list.modify p.step3 em {
+  display: block;
+  margin-left: 33px;
+  font-size: 17px;
+}
+.family-space.automatic p > span,
+.space-list.modify p.step3 > span {
+  display: inline-block;
+  margin-right: 7px;
+  text-align: center;
+  line-height: 25px;
+  font-size: 20px;
+  color: #005de7;
+}
+.family-space.automatic p.terms span,
+.space-list.modify p.terms span {
+  display: inline-block;
+  width: 50px;
+  line-height: 19px;
+  border: 1px solid #005de7;
+  font-size: 13px;
+  border-radius: 3px;
+  text-align: center;
+  margin-right: 7px;
+}
+.family-space.automatic ul {
+  margin-bottom: 25px;
+}
+.family-space.automatic ul li > a {
+  padding: 0 20px 0;
+  background: #fff;
+}
+.family-space.automatic ul li > a em {
+  padding: 19px 0 0 0;
+}
+
+.family-space.automatic ul li > a.on + div {
+  display: block;
+}
+.family-space.automatic ul li > a + div {
+  display: none;
+  height: auto;
+  min-height: 60px;
+  padding: 0 20px 0 20px;
+  background: #fafcfd;
+}
+.family-space.automatic .btn-area {
+  padding: 0 25px 0 35px;
+}
+.family-space.automatic .btn-area a {
+  background: #0183e2;
+  color: #fff;
+  font-size: 17px;
+}
+.family-space.automatic .btn-area a:hover {
+  background: #3f72c3;
+}
+
+.family-space.automatic .btn-area span:hover:before,
+.btn-area.type1 span:hover:before {
+  background-position: 0 -17px;
+}
+.space-list.modify p.terms {
+  margin-top: -11px;
+  padding: 0 20px 35px;
+  color: #005de7;
+  font-size: 15px;
+}
+
+.family-space.automatic p.terms {
+  margin-top: -11px;
+  padding: 0 20px 35px;
+  color: #005de7;
+  font-size: 15px;
+}
+.space-list.modify div.practice {
+  overflow: hidden;
+  margin-top: -20px;
+  margin-bottom: 3px;
+  padding: 0 20px 12px;
+}
+.space-list.modify div.practice em {
+  float: left;
+  width: 50px;
+  line-height: 19px;
+  border: 1px solid #005de7;
+  font-size: 13px;
+  border-radius: 3px;
+  text-align: center;
+  margin-right: 7px;
+}
+.space-list.modify div.practice span {
+  display: block;
+  margin-left: 57px;
+  color: #005de7;
+  font-size: 15px;
+}
+
+.automatic .emergency-bell {
+  position: relative;
+}
+.automatic .emergency-bell em {
+  display: block;
+  margin: 0 40px 0 0;
+  padding: 17px 0 17px;
+  font-size: 17px;
+  color: #1b3552;
+}
+.automatic .emergency-bell .bell {
+  position: absolute;
+  right: 20px;
+  top: 8px;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+
+.automatic .emergency-bell .bell label.chk-skin {
+  height: 23px;
+  color: #1b3552;
+  font-size: 15px;
+}
+.automatic .emergency-bell .bell label.chk-skin:after {
+  width: 40px;
+  height: 40px;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/common/bg_checkbox03_2.png")
+    no-repeat 0 0;
+  background-size: 40px;
+}
+.automatic .emergency-bell .bell label.chk-skin input[type="checkbox"] {
+  width: 40px;
+  height: 40px;
+  margin: 0 10px 0 0;
+  vertical-align: -6px;
+}
+.automatic .emergency-bell .bell label.chk-skin.checked:after {
+  background-position: 0 -40px;
+}
+.automatic .automatic-reg {
+  padding: 0 !important;
+}
+.automatic .automatic-reg ul {
+  margin: 0;
+}
+.automatic .automatic-reg ul li {
+  position: relative;
+  min-height: 60px;
+  padding: 17px 0 18px 20px;
+  border-bottom: 1px solid #fff;
+}
+.automatic .automatic-reg ul li em {
+  padding: 0;
+  margin: 0;
+}
+
+.automatic-reg .check.type1 {
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/bg_automatic_check04.png")
+    no-repeat 0 0;
+  background-size: 110px;
+}
+.automatic-reg .light,
+.automatic-reg .light.type1 {
+  position: absolute;
+  right: 20px;
+  top: 12px !important;
+  width: 110px;
+  height: 33px;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/bg_automatic_check01.png")
+    no-repeat 0 0;
+  background-size: 110px;
+}
+.automatic-reg .light.type1 {
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/bg_automatic_check03.png")
+    no-repeat 0 0;
+  background-size: 110px;
+}
+.automatic-reg .security {
+  position: absolute;
+  right: 20px;
+  top: 12px !important;
+  width: 110px;
+  height: 33px;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/bg_automatic_check02.png")
+    no-repeat 0 0;
+  background-size: 110px;
+}
+
+/* 우편번호 검색 */
+.zip-cold h1 {
+  display: block;
+  padding-top: 10px;
+  font-size: 19px;
+  color: #11438c;
+  text-align: center;
+}
+.zip-cold .page-close {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/common/bg_btn_close.png")
+    no-repeat;
+  background-size: 34px;
+  font-size: 0;
+  text-indent: -9999px;
+}
+.zip-cold .page-close:hover {
+  background-position: 0 -34px;
+}
+.zip-cold .tab ul {
+  display: block;
+  height: 40px;
+  margin: 36px 0 0;
+  padding-left: 15px;
+  border-bottom: 2px solid #00a5fa;
+}
+.zip-cold .tab ul li {
+  position: relative;
+  float: left;
+  width: 125px;
+  height: 38px;
+  margin-right: 5px;
+  border: 2px solid #83a0b7;
+  border-bottom: 0;
+  background: #fcfdfe;
+  border-radius: 5px 5px 0 0;
+}
+.zip-cold .tab ul li.on {
+  border: 2px solid #00a5fa;
+  border-bottom: 0;
+  background: #fff;
+}
+.zip-cold .tab ul li.on:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+}
+.zip-cold .tab ul li.on a {
+  color: #00a5fa;
+}
+.zip-cold .tab ul li a {
+  display: block;
+  text-align: center;
+  line-height: 38px;
+  font-size: 15px;
+  color: #83a0b7;
+}
+.zip-cold .address-search {
+  padding: 36px 0 0;
+  background: #fff;
+}
+.zip-cold .address-search ul li {
+  margin-bottom: 5px;
+}
+.zip-cold .address-search ul li:last-child {
+  margin: 0;
+}
+.zip-cold .address-search .city {
+  overflow: hidden;
+  margin: 0 20px 0 6px;
+}
+.zip-cold .address-search .select {
+  float: left;
+  width: 50%;
+}
+.zip-cold .address-search .select > span {
+  display: block;
+  margin-left: 14px;
+}
+.zip-cold .address-search .select:first-child {
+}
+.zip-cold .address-search .select > span button {
+  width: 100%;
+  height: 40px;
+  padding: 0 0 0 10px;
+  line-height: 40px;
+  text-align: left;
+  border-radius: 3px;
+  font-size: 15px;
+  color: #909ead;
+  background: #e0e8ee;
+  border: 1px solid #e0e8ee;
+}
+.zip-cold .address-search .select > span button:hover {
+  border: 1px solid #00a5fa;
+  color: #1b3552;
+}
+.zip-cold .address-search .select > span button:after {
+  content: "";
+  float: right;
+  width: 9px;
+  height: 5px;
+  margin: 16px 5px 0 0;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/common/bg_select_btn.png")
+    no-repeat 0 0;
+  background-size: 9px;
+}
+.zip-cold .address-search .search {
+  margin: 0 20px;
+}
+.zip-cold .address-search .search .form-input {
+  float: left;
+  width: 70%;
+}
+.zip-cold .address-search .search .form-txt {
+  float: left;
+  width: 70%;
+}
+.zip-cold .address-search .search input {
+  font-size: 15px;
+}
+.zip-cold .address-search .search-btn {
+  float: right;
+  width: 30%;
+}
+.zip-cold .address-search .search-btn a {
+  display: block;
+  margin-left: 5px;
+  line-height: 40px;
+  border-radius: 5px;
+  background: #83a0b7;
+  font-size: 13px;
+  color: #fff;
+  text-align: center;
+}
+.zip-cold .address-search .search-btn a:hover {
+  background: #3f72c3;
+}
+.zip-cold .address-search .input-ex {
+  padding: 11px 29px 25px;
+  font-size: 13px;
+  color: #777;
+}
+.zip-cold .address-search .input-ex em {
+  color: #00a5fa;
+}
+.zip-cold .address-search .input-ex .type1 {
+  padding-bottom: 2px;
+  color: #333;
+}
+.zip-cold .no-search-result {
+  padding: 40px 0;
+  background: #fafcfd;
+  border-top: 1px solid #dfe5f2;
+  font-size: 15px;
+  text-align: center;
+  letter-spacing: -1px;
+}
+.zip-cold .search-result {
+  padding: 21px 20px 45px;
+  background: #fafcfd;
+  border-top: 1px solid #dfe5f2;
+}
+.zip-cold .search-result p {
+  padding-bottom: 6px;
+  color: #1b3552;
+  font-size: 13px;
+}
+div.border-type2 {
+  border: 1px solid #83a0b7;
+  border-radius: 3px;
+}
+.border-type2 table {
+  width: 100%;
+}
+.border-type2 table tr th {
+  padding: 6px 0;
+  background: #e4edf5;
+  border-left: 1px solid #ccd9e3;
+  color: #1b3552;
+  font-size: 13px;
+  font-weight: normal;
+  border-radius: 3px 3px 0 0;
+}
+.border-type2 table tr th:first-child,
+.border-type2 table tr td:first-child {
+  border-left: 0;
+}
+
+.zip-cold select {
+  font-size: 13px;
+}
+
+.border-type2 table tr td {
+  padding: 10px 10px;
+  background: #fff;
+  font-size: 12px;
+  border-top: 1px solid #ccd9e3;
+  border-left: 1px solid #ccd9e3;
+  border-radius: 0 0 3px 3px;
+}
+.border-type2 table tr td label.radio-skin input[type="radio"] {
+  width: 21px;
+  height: 21px;
+  vertical-align: -6px;
+}
+.border-type2 table tr td label.radio-skin {
+  height: 21px;
+}
+.border-type2 table tr td label.radio-skin:after {
+  width: 21px;
+  height: 21px;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/common/bg_radio_zip.png")
+    no-repeat 0 0;
+  background-size: 21px;
+}
+.border-type2 table tr td label.radio-skin.checked:after {
+  background-position: 0 -21px;
+}
+.border-type2.detail table tr th {
+  border-top: 1px solid #ccd9e3;
+}
+.border-type2.detail table tr:first-child td,
+.border-type2 table tr:first-child th {
+  border-top: 0;
+}
+.border-type2.detail table tr td {
+  border-radius: 0 3px 3px 0;
+}
+.border-type2.detail table tr td div.input-default-wrap {
+  height: 35px !important;
+}
+.border-type2.detail table tr td div.input-default-wrap .form-txt {
+  line-height: 35px;
+  font-size: 12px;
+}
+.border-type2.detail table tr td div.input-default-wrap.mem .form-input input {
+  line-height: 35px;
+  height: 35px;
+}
+.search-result.detail-list {
+  padding-top: 25px;
+}
+.search-result.detail-list .btn-area {
+  padding: 15px 0 0;
+}
+.search-result.detail-list .btn-area .btn-type1 {
+  color: #fff;
+  line-height: 40px;
+  border-radius: 5px;
+  font-size: 15px;
+}
+.confirmation-address {
+  margin: 35px 0 0;
+  padding: 11px 9px;
+  border: 1px solid #83a0b7;
+  background: #fff;
+  border-radius: 3px;
+  color: #1b3552;
+}
+.confirmation-address em {
+  display: block;
+  font-size: 13px;
+}
+.confirmation-address span {
+  display: block;
+  font-size: 12px;
+}
+
+/* 비밀번호 찾기 */
+.my-information .pw-search .input-default-wrap {
+  margin: 0 35px;
+}
+.my-information .pw-search .input-default-wrap .form-input input {
+  height: 45px;
+  padding-left: 23px;
+}
+.my-information .pw-search p {
+  padding: 20px 0;
+  text-align: center;
+  color: #333;
+  font-size: 17px;
+}
+.my-information .pw-search ul li > a.on + .space-choice {
+  display: block;
+}
+.my-information .pw-search .space-choice {
+  display: none;
+}
+.my-information .pw-search label.radio-skin {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 40px;
+  color: #333;
+  font-size: 17px;
+  line-height: 40px;
+}
+.my-information .pw-search label.radio-skin input[type="radio"] {
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+  vertical-align: -12px;
+  margin: 0;
+  cursor: pointer;
+}
+.my-information .pw-search label.radio-skin:after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  content: "";
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/common/bg_checkbox03_2.png")
+    no-repeat 0 0;
+  background-size: 40px;
+}
+.my-information .pw-search label.radio-skin.checked:after {
+  background-position: 0 -40px;
+}
+.my-information .pw-search span.aa {
+  display: block;
+  float: left;
+  margin-left: 50px;
+}
+.my-information .pw-search .individual {
+  padding: 22px 35px;
+}
+.my-information .pw-search .individual .btn-area.type1 {
+  padding: 0;
+}
+.my-information .pw-search ul li > a {
+  padding: 10px 50px 10px 20px;
+}
+.my-information .pw-search .corporate,
+.my-information .pw-search .foreigner {
+  padding: 22px 35px;
+}
+.my-information .pw-search .corporate .input-default-wrap,
+.my-information .pw-search .foreigner .input-default-wrap {
+  margin: 0 0 5px 0;
+}
+.my-information .pw-search .corporate .btn-area,
+.my-information .pw-search .foreigner .btn-area {
+  padding-top: 5px;
+}
+.my-information
+  .pw-search
+  .foreigner
+  div.input-default-wrap.type1
+  .form-txt.num {
+  padding: 7px 0 0 23px;
+  line-height: 120%;
+  height: 45px;
+}
+.pw-certification-reset .password-change.type1 {
+  padding: 21px 35px 0px;
+}
+.pw-certification-reset .password-change p {
+  padding: 0 0 11px 35px;
+  background-position: 10px 2px;
+} /*161226*/
+.pw-certification-reset p.info-txt {
+  padding: 31px 0 0;
+  font-size: 17px;
+  text-align: center;
+}
+.pw-certification-reset .password-change.type2 {
+  padding-bottom: 5px;
+}
+.pw-certification-reset .btn-area {
+  padding: 0 35px;
+}
+.pw-certification-reset .data-no-list {
+  margin: 35px 0 25px !important;
+}
+.pw-search.id-search p {
+  padding: 0 0 31px;
+}
+.pw-search.id-search ul li > a {
+  padding: 10px 0 10px 20px;
+}
+.idsearch-phone-certification em.id {
+  display: block;
+  margin-top: 35px;
+  height: 60px;
+  line-height: 60px;
+  background: #fafcfd;
+  border-top: 1px solid #dfe5f2;
+  border-bottom: 1px solid #dfe5f2;
+  color: #1b3552;
+  font-size: 17px;
+  font-weight: bold;
+  text-align: center;
+}
+.idsearch-phone-certification .info-txt {
+  padding: 31px 0;
+  text-align: center;
+  font-size: 17px;
+  color: #333;
+}
+.idsearch-phone-certification .btn-area {
+  padding: 22px 35px;
+}
+.idsearch-phone-certification .btn-area a {
+  margin-bottom: 10px;
+}
+.idsearch-phone-certification .phone-form {
+  padding: 0 20px;
+  background: #fff;
+  border-top: 1px solid #dfe5f2;
+  border-bottom: 1px solid #dfe5f2;
+}
+.idsearch-phone-certification .phone-form p {
+  padding: 18px 0 21px;
+  font-size: 15px;
+  color: #777;
+  text-align: center;
+}
+.idsearch-phone-certification .phone-form .sms {
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #dfe5f2;
+}
+.idsearch-phone-certification .phone-form .sms > .design-select-box {
+  float: left;
+  width: 33.4%;
+}
+.idsearch-phone-certification .phone-form .sms .input-default-wrap {
+  float: left;
+  width: 33.3%;
+}
+
+.idsearch-phone-certification
+  .phone-form
+  .sms
+  div.input-default-wrap
+  .form-txt {
+  text-align: center;
+  padding: 0;
+  left: -5px;
+}
+.idsearch-phone-certification
+  .phone-form
+  .sms
+  div.input-default-wrap
+  .form-input {
+  width: 100%;
+  display: block;
+  padding: 0 10px;
+}
+.idsearch-phone-certification
+  .phone-form
+  .sms
+  div.input-default-wrap
+  .form-input:after {
+  content: "";
+  position: absolute;
+  left: -3px;
+  top: 50%;
+  margin-top: -1px;
+  display: inline-block;
+  width: 4px;
+  height: 2px;
+  background: #909ead;
+}
+.idsearch-phone-certification
+  .phone-form
+  .sms
+  div.input-default-wrap
+  .form-input
+  input {
+  padding: 0;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+.idsearch-phone-certification .phone-form .sms div.input-default-wrap > span {
+  margin-left: 10px;
+}
+.idsearch-phone-certification .phone-form .sms .sms-btn {
+  overflow: hidden;
+  display: block;
+  padding: 10px 0 0;
+  clear: both;
+  height: 50px;
+  width: 66.7%;
+}
+.idsearch-phone-certification .phone-form .sms-btn button {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  border: 0;
+  padding: 0;
+  font-size: 15px;
+  color: #fff;
+  background: #83a0b7;
+}
+.idsearch-phone-certification .phone-form .sms-btn button:hover {
+  background: #3f72c3;
+}
+.idsearch-phone-certification .phone-form .certification {
+  overflow: hidden;
+  padding: 22px 0;
+}
+.idsearch-phone-certification .phone-form .certification .input-default-wrap {
+  float: left;
+  width: 66.7%;
+}
+.idsearch-phone-certification
+  .phone-form
+  .certification
+  .input-default-wrap
+  .form-input
+  input {
+  padding: 0;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+.idsearch-phone-certification .phone-form .certification .sms-btn {
+  float: right;
+  width: 33.3%;
+}
+.idsearch-phone-certification .phone-form .certification .sms-btn span {
+  display: block;
+  margin-left: 5px;
+}
+.idsearch-phone-certification .phone-form .certification .sms-btn button {
+  margin-left: 0;
+}
+
+.alarm-clear-wrap {
+  background: #fff;
+}
+.alarm-clear h2 {
+  margin-top: 20px;
+  line-height: 45px;
+  font-size: 17px;
+  color: #333;
+  text-align: center;
+}
+.alarm-clear .txt-info {
+  text-align: center;
+  font-size: 15px;
+  color: #005de7;
+}
+.alarm-clear .select {
+  display: block;
+  height: 70px;
+  margin-top: 18px;
+  line-height: 70px;
+  background: #fff;
+  text-align: center;
+  color: #1b3552;
+  font-size: 17px;
+  font-weight: bold;
+  border-top: 1px solid #dfe5f2;
+}
+.alarm-clear .space-list {
+  padding-top: 0;
+}
+.alarm-clear-wrap .btn-area {
+  background: #eef4f8;
+}
+
+/*170109 아이디,비밀번호찾기*/
+.idSearch .space-list {
+  margin: 0 20px;
+}
+.idSearch .space-list ul {
+  border-top-width: 0;
+}
+.idSearch .space-list ul li {
+  border-bottom: 0;
+  margin: 10px 0;
+  background: none;
+}
+.idSearch .space-list ul li:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.idSearch .space-list ul li input.inp-sty1 {
+  border: 2px solid #99b3c8;
+  border-radius: 25px;
+  background: #ffffff;
+  height: 45px;
+  line-height: 45px;
+  color: #9cabba;
+  padding: 0 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 25px;
+}
+.idSearch .space-list ul li input.inp-sty1.on {
+  border: 2px solid #00a5fa;
+  background: #fff;
+  color: #1b3552;
+}
+.idSearch .space-list ul li > span {
+  width: 30%;
+  float: left;
+}
+.idSearch .space-list ul li > input.inp-sty1 {
+  width: 100%;
+  float: right;
+  font-size: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 25px;
+}
+.idSearch .space-list > ul > li > span {
+  line-height: 45px;
+  text-align: left;
+  font-weight: 600;
+  padding-left: 10px;
+}
+.idSearch .space-list ul li.join_user_name input.inp-sty1 {
+  width: 100%;
+}
+.idSearch .space-list > ul > li.date_of_number span {
+  width: 65%;
+  text-align: left;
+  padding-left: 22px;
+}
+.idSearch .space-list > ul > li.date_of_birth {
+  margin-bottom: 0;
+}
+.idSearch .space-list > ul > li.date_of_birth p {
+  display: block;
+  float: left;
+  width: 100%;
+  padding: 6px 1px 6px 40px;
+  color: #ff4b2d;
+  font-weight: normal;
+  font-size: 13px;
+  height: 24px;
+  line-height: 24px;
+  overflow: hidden;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/common/icon_info.png")
+    no-repeat 17px 8px;
+  background-size: 19px;
+}
+.idSearch .space-list ul li.call_certification {
+  margin-top: 0;
+}
+.idSearch .space-list ul li.call_certification > div {
+  padding: 0;
+}
+.idSearch .space-list ul li.call_certification > div > span {
+  display: inline-block;
+  width: 100%;
+  font-size: 14px;
+  float: left;
+  text-align: right;
+  padding: 5px 0;
+}
+.idSearch .space-list ul li.call_certification div > span > span {
+  color: #ff4b2d;
+  padding: 0 1px;
+  width: 20%;
+  float: right;
+}
+.idSearch .space-list ul li.call_certification div div.btn-area {
+  width: 33%;
+  padding: 0;
+  display: inline-block;
+  float: right;
+}
+.idSearch .space-list ul li.call_certification div div.btn-area a.btn-type1 {
+  height: 45px;
+  line-height: 45px;
+  color: #ffffff;
+  border-radius: 25px;
+  font-size: 15px;
+}
+.idSearch .space-list ul li.call_certification div input.inp-sty1 {
+  width: 65%;
+  float: left;
+  font-size: 15px;
+}
+.idSearch > div.btn-area {
+  margin: 22px 20px;
+}
+
+/*170119 비밀번호 초기화*/
+.idSearch .space-list ul li.call_certification.depth01 {
+  margin-top: 50px;
+}
+.idSearch .space-list ul li.call_certification.depth01 > div .btn-area {
+  float: left;
+  width: 52%;
+}
+.idSearch .space-list ul li.call_certification.depth01 > div > span {
+  float: right;
+  width: 46%;
+  background: #ffffff;
+  border: 2px solid #99b3c8;
+  height: 45px;
+  line-height: 31px;
+  padding: 5px 10px;
+  border-radius: 25px;
+  text-align: center;
+  font-size: 12px;
+}
+.idSearch .space-list ul li.call_certification.depth01 > div > span > span {
+  color: #ff4b2d;
+  float: none;
+  font-size: 12px;
+}
+
+.idsearch-phone-certification.idSearch p.info-txt {
+  padding: 31px 20px;
+}
+.idsearch-phone-certification.idSearch em.id {
+  padding: 0 20px;
+}
+.idsearch-phone-certification.idSearch div.btn-area {
+  padding: 0;
+  overflow: hidden;
+}
+.idsearch-phone-certification.idSearch div.btn-area a.btn-type2 {
+  margin: 0;
+}
+/*170120 아이디 찾기depth02 추가*/
+.idsearch-phone-certification.idSearch .pluralId {
+  overflow: hidden;
+}
+.idsearch-phone-certification.idSearch .pluralId ul li {
+  overflow: hidden;
+  padding: 0 20px;
+  line-height: 1;
+  font-size: 17px;
+  background: #fafcfd;
+  border-bottom: 1px solid #dfe5f2;
+}
+.idsearch-phone-certification.idSearch .pluralId ul li span {
+  padding: 21px 3px;
+  word-break: break-all;
+}
+.idsearch-phone-certification.idSearch .pluralId ul li > span:first-child {
+  float: left;
+  font-weight: 600;
+  width: 40%;
+}
+.idsearch-phone-certification.idSearch .pluralId ul li span.dateData {
+  width: 100%;
+}
+.idsearch-phone-certification.idSearch .pluralId ul li > span:last-child {
+  float: right;
+  width: 55%;
+}
+.idsearch-phone-certification.idSearch .pluralId ul li:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
+/*170119*/
+.idsearch-phone-certification.idSearch div.btn-area > div {
+  width: 48%;
+  margin: 0;
+}
+.idsearch-phone-certification.idSearch div.btn-area > div:last-child {
+  float: right;
+}
+
+.idSearch.pwSearch .space-list ul li.join_user_id p {
+  width: 100%;
+  display: block;
+  padding: 6px 1px 6px 40px;
+  color: #ff4b2d;
+  font-weight: normal;
+  float: left;
+  font-size: 13px;
+  height: 24px;
+  line-height: 24px;
+  overflow: hidden;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/common/icon_info.png")
+    no-repeat 17px 8px;
+  background-size: 19px;
+  margin: 0 0 8px 0;
+}
+.idSearch.pwSearch .space-list ul li.join_user_id {
+  margin-bottom: 0;
+}
+
+.pw-certification-reset.pwSearch .space-list {
+  padding: 35px 20px 0 20px;
+}
+.pw-certification-reset.pwSearch .space-list ul {
+  border: none;
+}
+.pw-certification-reset.pwSearch .space-list ul li {
+  background: none;
+  margin: 10px 0;
+} /*170119 수정*/
+.pw-certification-reset.pwSearch .space-list ul li > input.inp-sty1 {
+  border: 2px solid #99b3c8;
+  border-radius: 25px;
+  background: #ffffff;
+  height: 45px;
+  line-height: 45px;
+  color: #9cabba;
+  padding: 0 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 25px;
+}
+.pw-certification-reset.pwSearch .space-list ul li > input.inp-sty1.on {
+  border: 2px solid #00a5fa;
+}
+.pw-certification-reset.pwSearch .space-list ul li p {
+  display: block;
+  float: left;
+  width: 100%;
+  padding: 6px 1px 6px 40px;
+  color: #ff4b2d;
+  font-weight: normal;
+  font-size: 13px;
+  height: 24px;
+  line-height: 24px;
+  overflow: hidden;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/common/icon_info.png")
+    no-repeat 17px 8px;
+  background-size: 19px;
+  margin: 0 0 8px 0;
+}
+.pw-certification-reset.pwSearch > div.btn-area {
+  margin: 24px 20px;
+  padding: 0;
+}
+
+/* 180411 */
+.btn_down {
+  position: absolute;
+  bottom: 15px;
+  left: 30px;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/btn_img_down.png")
+    no-repeat center bottom;
+  text-indent: -10000px;
+  border: none;
+  width: 35px;
+  height: 35px;
+  background-size: cover;
+}
+.btn_down:hover,
+.btn_down:focus,
+.btn_down:active {
+  outline: 0;
+}
+
+.full-loading {
+  position: fixed;
+  background: rgba(51, 55, 63, 0.65);
+  text-indent: 0;
+  z-index: 9999;
+}
+.full-loading.up {
+  display: block;
+}
+.full-loading .img {
+  display: block;
+  width: 100%;
+  height: 60px !important;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -30px;
+  text-align: center;
+}
+.full-loading .img img {
+  width: 60px !important;
+  height: 60px !important;
+}
+.full-loading #loadingText p {
+  text-indent: -10000px;
+}
+
+/*여백 정리*/
+.mgT10 {
+  margin-top: 10px;
+}
+.mgT15 {
+  margin-top: 15px;
+}
+.mgT20 {
+  margin-top: 20px;
+}
+.mgT30 {
+  margin-top: 30px;
+}
+.mgB20 {
+  margin-bottom: 20px;
+}
+.mgB30 {
+  margin-bottom: 30px;
+}
+.mgA15 {
+  margin: 15px;
+}
+
+.pdC {
+  /*custom*/
+}
+.pdR5 {
+  padding-right: 5px;
+}
+.pdR10 {
+  padding-right: 10px;
+}
+
+.pdlR20 {
+  padding: 0 20px;
+}
+
+.pdA0 {
+  padding: 0;
+}
+.pdA20 {
+  padding: 20px;
+}
+
+.bdB0 {
+  border-bottom-width: 0;
+}
+
+/* **************************************************************************** */
+/*	20.06.26 Renew 
+/* ***************************************************************************** */
+.pop_layout .pop_cont {
+  padding-bottom: 60px;
+}
+.cont_box {
+  padding: 20px 15px 30px;
+  border-bottom: 0;
+}
+.log_filter {
+  padding: 0;
+  height: 100%;
+  overflow-y: auto;
+}
+.log_filter .filter_top {
+  padding: 20px 15px 5px;
+}
+.log_filter .filter_top:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.log_filter .filter_top .btn_filterReset {
+  display: inline-block;
+  vertical-align: top;
+  padding: 0 14px;
+  height: 24px;
+  line-height: 25px;
+  background: #3f3f3f;
+  border-radius: 50rem;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  margin-top: -4px;
+}
+.log_filter .filter_top .btn_filterReset span {
+  display: block;
+  padding-left: 17px;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/search_filterReset_icon.png")
+    no-repeat 0 center;
+  background-size: 12px auto;
+}
+.log_filter .detail_search_box {
+  height: 61px;
+}
+.log_filter .detail_search {
+  padding: 8px 15px 16px;
+  height: 54px;
+}
+.pop_cont .txt_wrap {
+  margin-top: 40px;
+  text-align: center;
+}
+.pop_cont .txt_wrap.line_top {
+  position: relative;
+}
+.pop_cont .txt_wrap.line_top:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: #e4e4e4;
+  position: absolute;
+  left: 0;
+  top: -22px;
+}
+.pop_cont .txt_wrap .tit {
+  font-size: 22px;
+  color: #111;
+  font-weight: 600;
+}
+.pop_cont .txt_wrap .tit.tit_icon {
+  padding-top: 150px;
+  position: relative;
+}
+.pop_cont .txt_wrap .tit.tit_icon:after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  background-color: #eff2f9;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  margin-left: -60px;
+}
+.pop_cont .txt_wrap .tit.tit_icon.passChange:after {
+  background-image: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/passChange_icon.png");
+  background-size: 80px auto;
+}
+.pop_cont .txt_wrap .tit.tit_icon.emergency01:after {
+  background-image: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/emergency_icon02.png");
+  background-size: 70px auto;
+  background-position: 28px 29px;
+}
+.pop_cont .txt_wrap .tit.tit_icon.emergency02:after {
+  background-image: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/emergency_icon03.png");
+  background-size: 70px auto;
+}
+.pop_cont .txt_wrap .tit.tit_icon.emergency03:after {
+  background-image: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/emergency_icon04.png");
+  background-size: 70px auto;
+}
+.pop_cont .txt_wrap .tit.tit_icon.idFindResult:after {
+  background-image: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/idFindResult_icon.png");
+  background-size: 70px auto;
+}
+.pop_cont .txt_wrap .tit.tit_icon.idFind:after {
+  background-image: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/idFind_icon.png");
+  background-size: 60px auto;
+  background-position: 36px 24px;
+}
+.pop_cont .txt_wrap .tit.tit_icon.authenSuccess:after {
+  background-image: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/authenSuccess_icon.png");
+  background-size: 70px auto;
+}
+.pop_cont .txt_wrap .tit.tit_icon.authenFail:after {
+  background-image: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/authenFail_icon.png");
+  background-size: 60px auto;
+  background-position: center;
+}
+.pop_cont .txt_wrap .tit + .txt {
+  margin-top: 14px;
+}
+.pop_cont .txt_wrap .txt {
+  color: #444;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+.memberFind_img img {
+  width: 200px;
+  height: auto;
+  margin-right: -12px;
+}
+
+/* 녹화영상 */
+.video-img-pop .img .img-wrap {
+  height: 320px;
+}
+.video-img-pop .img .img-wrap > div > span.filming-time {
+  text-align: left;
+  right: 0;
+}

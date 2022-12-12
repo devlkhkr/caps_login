@@ -1,0 +1,869 @@
+@charset "utf-8";
+/* S : 221213 ADDED BY LEEKH */
+@import url("login2.css");
+/* E : 221213 ADDED BY LEEKH */
+/* login */
+body {
+  padding-top: 48px;
+  background: #efefef;
+  font: normal 16px/1 "나눔스퀘어", "Nanum Square", "돋움", Dotum, sans-serif;
+  letter-spacing: -0.6px;
+  font-weight: 400;
+  word-break: break-all;
+}
+body.fixed {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+input,
+select,
+button,
+textarea {
+  font-family: "Nanum Square", "돋움", Dotum, sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+em,
+table,
+a,
+li,
+dt,
+dd,
+select,
+strong,
+input,
+b {
+  transform: skew(-0.03deg);
+}
+b,
+strong {
+  font-weight: 600;
+}
+input[type="text"].select,
+input[type="password"].select,
+input[type="tel"].select,
+input[type="number"].select,
+input[type="email"].select,
+.join-cont .box-wrap input,
+input[type="text"],
+input[type="password"],
+input[type="tel"],
+input[type="number"],
+input[type="email"] {
+  height: 40px !important;
+  line-height: 40px;
+  background: #f2f2f2;
+  border: 0;
+  border-radius: 3px;
+  height: 100%;
+  color: #111;
+  padding: 0 10px;
+  font-size: 13px;
+  transform: skew(-0.03deg);
+}
+.input_del {
+  position: relative;
+}
+.input_del input {
+  padding-right: 40px;
+}
+.input_del .btn_del {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  margin-top: -9px;
+  display: block;
+  min-width: 0;
+  padding: 0;
+  font-size: 0;
+  width: 18px;
+  height: 18px;
+  border: 0;
+  border-radius: 100%;
+  background: #b3b3b3
+    url("https://dev.adtcapshome.co.kr:8443/static/home2/images/input_close_icon.png")
+    no-repeat center;
+  background-size: auto 8px;
+  z-index: 2;
+}
+input:read-only {
+  background: #fff;
+  border: 1px solid #ddd;
+  color: #777;
+}
+
+header,
+.popup_wrap .pop_tit {
+  height: 48px;
+  background: #fff;
+  padding: 0 15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 80;
+}
+header .logo_wrap {
+  display: inline-block;
+  vertical-align: top;
+  width: 90px;
+  height: 100%;
+}
+header .logo_wrap h1 {
+  height: 100%;
+  width: 100%;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/logo05.png")
+    no-repeat center;
+  background-size: 100% auto;
+  font-size: 0;
+}
+header .btn_gnb {
+  position: absolute;
+  width: 48px;
+  height: 100%;
+  position: absolute;
+  right: 5px;
+  top: 0;
+}
+header .btn_gnb i {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: #222;
+  margin: 0 auto;
+}
+header .btn_gnb i:nth-child(1) {
+  margin-top: 17px;
+}
+header .btn_gnb i:nth-child(2) {
+  width: 16px;
+  margin-left: 13px;
+}
+header .btn_gnb i + i {
+  margin-top: 5px;
+}
+header .btn_gnb span {
+  font-size: 0;
+}
+header .btn_notice {
+  display: block;
+  font-size: 0;
+  width: 48px;
+  height: 100%;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/header_notice_icon.png")
+    no-repeat center;
+  background-size: auto 22px;
+  position: absolute;
+  right: 52px;
+  top: 0;
+}
+header .btn_notice .notice_cnt {
+  display: block;
+  position: absolute;
+  top: 8px;
+  left: 24px;
+  min-width: 15px;
+  height: 15px;
+  padding: 0 3px;
+  background: #0055fd;
+  font-size: 10px;
+  color: #fff;
+  text-align: center;
+  line-height: 16px;
+  font-weight: 600;
+  border-radius: 50rem;
+  text-indent: -1px;
+}
+header .btn_back {
+  display: block;
+  font-size: 0;
+  width: 48px;
+  height: 100%;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/header_back_icon.png")
+    no-repeat center;
+  background-size: auto 16px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+header .btn_close,
+.popup_wrap .pop_tit .btn_close {
+  display: block;
+  font-size: 0;
+  width: 48px;
+  height: 100%;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/gnb_close_icon.png")
+    no-repeat center;
+  background-size: 12px auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+header h1.tit,
+.popup_wrap .pop_tit .tit {
+  line-height: 48px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #111;
+}
+body.sub {
+  background: #edeef0;
+}
+body.sub header {
+  border-bottom: 1px solid #e5e5e5;
+  text-align: center;
+}
+body.pop_layout,
+.popup_wrap .pop_tit {
+  background: #fff;
+}
+body.pop_layout header,
+.popup_wrap .pop_tit {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.tab_cont {
+  display: none;
+}
+#tab01 {
+  display: block;
+}
+
+.login-w {
+  min-height: 700px;
+  height: 100vh;
+  position: relative;
+}
+.login-top {
+  background: #093383;
+  height: 410px;
+  padding: 30px 30px 0;
+  background-size: 150px auto;
+  position: relative;
+  padding-bottom: 70px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 10;
+}
+.login-top.pass-bg {
+  background-color: #1568dd;
+}
+.login-top .logo {
+  padding-top: 68px;
+  font-size: 26px;
+  line-height: 1.4;
+  color: #fff;
+  font-weight: 200;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/login_logo02.png")
+    no-repeat left top;
+  background-size: auto 50px;
+}
+.login-top .logo strong {
+  color: #f9fbff;
+}
+.login-top .form-link {
+  display: flex;
+  flex-wrap: wrap;
+}
+.login-top .form-link li {
+  flex: 1;
+  width: 50%;
+  position: relative;
+  text-align: center;
+}
+.login-top .form-link li a {
+  display: block;
+  font-size: 14px;
+  color: #b6b6b6;
+  background: #ededed;
+  line-height: 42px;
+}
+.login-top .form-link li.on a {
+  color: #111;
+  background: #fff;
+  font-weight: 600;
+}
+.login-top .login-form {
+  width: 100%;
+  position: relative;
+  background: #fff;
+  border-radius: 10px;
+  margin-top: 25px;
+  overflow: hidden;
+  box-shadow: 5px 5px 20px rgba(19, 19, 19, 0.16);
+}
+.login-top .login-form .tab_cont {
+  padding: 18px;
+  min-height: 286px;
+}
+.login-top .form {
+  padding: 5px 0 0;
+}
+.login-top .form li {
+  position: relative;
+  margin-bottom: 14px;
+}
+.login-top .form li .tit {
+  font-size: 15px;
+  color: #bbb;
+  margin-bottom: 2px;
+}
+.login-top .form input[type="text"],
+.login-top .form input[type="password"] {
+  background: transparent;
+  color: #44619f;
+  font-size: 15px;
+  padding: 0;
+  border-radius: 0;
+}
+.login-top .form input[type="text"]:focus,
+.login-top .form input[type="password"]:focus {
+  border: 0;
+}
+.login-top .form input::placeholder {
+  color: #e1e1e1;
+  font-size: 13px;
+}
+.login-top .form input::-ms-input-placeholder {
+  color: #e1e1e1;
+  font-size: 13px;
+}
+.login-top .form input::-webkit-input-placeholder {
+  color: #e1e1e1;
+  font-size: 13px;
+}
+.login-top .form input::-moz-placeholder {
+  color: #e1e1e1;
+  font-size: 13px;
+}
+.login-top .form .input_del {
+  border-bottom: 2px solid #e1e1e1;
+  padding-right: 30px;
+}
+.login-top .form .input_del.focus {
+  border-bottom: 2px solid #01297d;
+}
+.login-top .form .input_del .btn_del {
+  display: none;
+  background: #dddddd
+    url(https://dev.adtcapshome.co.kr:8443/static/home2/images/gnb_close_icon.png)
+    no-repeat center;
+  background-size: 6px auto;
+  opacity: 0.7;
+  right: 5px;
+}
+.login-top .form .input_del.focus .btn_del {
+  display: block;
+}
+.login-top .btn-login {
+  display: block;
+  text-align: center;
+  background: #111;
+  color: #fff;
+  height: 58px;
+  line-height: 58px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 600;
+  z-index: 10;
+}
+.login-top .btn-pass {
+  display: block;
+  margin-bottom: 16px;
+  border: 2px solid #8951ff;
+  background: #fff;
+  color: #8951ff;
+  height: 58px;
+  line-height: 56px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 600;
+  z-index: 10;
+}
+.login-top .btn-pass span {
+  display: block;
+  height: 100%;
+  margin-left: 90px;
+  border-left: 1px solid #ccc;
+  padding-left: 18px;
+}
+.login-top .btn-pass span:after {
+  content: "";
+  display: block;
+  width: 90px;
+  height: 100%;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/pass_logo_color.png")
+    no-repeat center;
+  background-size: 50px auto;
+  position: absolute;
+  right: 100%;
+  bottom: 0;
+}
+.login-top .pass-info {
+  color: #333;
+  line-height: 1.8;
+  font-weight: 600;
+  padding: 40px 0 35px;
+}
+.login-top .pass-info .pass-logo {
+  display: block;
+  padding-left: 60px;
+  position: relative;
+}
+.login-top .pass-info .pass-logo:after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 100%;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/pass_logo.png")
+    no-repeat 2px center;
+  background-size: 50px auto;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.login-top .id-save {
+  display: block;
+  padding-top: 25px;
+}
+.login-top .login-chk input {
+  display: none;
+}
+.login-top .login-chk .icon {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 28px;
+  line-height: 20px;
+  font-size: 14px;
+  color: #999;
+}
+.login-top .login-chk .icon:after {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -10px;
+  box-sizing: border-box;
+}
+.login-top input:checked + .icon {
+  color: #222;
+}
+.login-top input:checked + .icon:after {
+  border-color: #222;
+  background: #222
+    url("https://dev.adtcapshome.co.kr:8443/static/home2/images/chkbox_on_icon.png")
+    no-repeat center;
+  background-size: 12px auto;
+}
+.login-fixed-menu {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  z-index: 10;
+}
+.login-fixed-menu .copy-txt {
+  font-size: 12px;
+  color: #999;
+  padding: 0 30px;
+  margin: 4px 0 20px;
+}
+.login-menu,
+.login-find {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 30px;
+}
+.login-menu li,
+.login-find li {
+  position: relative;
+}
+.login-menu li:after,
+.login-find li:after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 10px;
+  background: #aaa;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  margin-top: -5px;
+}
+.login-menu li:after {
+  margin-top: -6px;
+}
+.login-menu li:last-child:after,
+.login-find li:last-child:after {
+  display: none;
+}
+.login-menu li:last-child a,
+.login-find li:last-child a {
+  padding-right: 0;
+}
+.login-menu li a,
+.login-find li a {
+  display: block;
+  font-size: 14px;
+  color: #999;
+  padding: 0 24px 0 0;
+  line-height: 1.5;
+  letter-spacing: -1.2px;
+}
+.login-menu li.login-policy a {
+  padding-left: 0;
+}
+.login-find {
+  justify-content: center;
+  padding: 0;
+  margin-top: 10px;
+}
+.login-find li a {
+  color: #777;
+  font-weight: 600;
+  line-height: 34px;
+}
+.login-fixed {
+  ckground: #212121;
+  display: flex;
+  flex-wrap: wrap;
+}
+.login-fixed li {
+  flex: 1;
+  position: relative;
+}
+.login-fixed li + li:after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 12px;
+  background: #7a7a7a;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -6px;
+}
+.login-fixed li a {
+  display: block;
+  text-align: center;
+  font-size: 13px;
+  color: #ddd;
+  padding: 18px 0;
+}
+.login-fixed li + li a {
+  color: #fff;
+}
+
+.tit_top {
+  position: relative;
+}
+.tit_top.btn_right {
+  padding-right: 95px;
+}
+.tit_top.btn_mini_right {
+  padding-right: 50px;
+}
+.tit_top .txt_sub {
+  color: #111;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.tit_top .txt_sub + .tit {
+  margin-top: 5px;
+}
+.tit_top .tit {
+  color: #111;
+  font-size: 18px;
+  font-weight: 600;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.no_bg_box {
+  padding: 20px 15px 22px;
+  font-size: 14px;
+  color: #777;
+  line-height: 1.6;
+}
+.no_bg_box:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.info_txt {
+  color: #939393;
+  font-size: 13px;
+}
+
+.pop_layout.popup_wrap {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: #fff;
+  padding-top: 48px;
+  overflow-y: auto;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 79;
+}
+.pop_layout.popup_wrap.on {
+  visibility: visible;
+  opacity: 1;
+}
+.pop_layout .pop_cont {
+  padding-bottom: 60px;
+}
+.pop_layout .cont_box {
+  padding: 20px 15px 30px;
+  border-bottom: 0;
+}
+.pop_layout .pop_cont .txt_wrap {
+  margin-top: 40px;
+  text-align: center;
+}
+.pop_layout .pop_cont .txt_wrap.line_top {
+  position: relative;
+}
+.pop_layout .pop_cont .txt_wrap.line_top:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: #e4e4e4;
+  position: absolute;
+  left: 0;
+  top: -22px;
+}
+.pop_layout .pop_cont .txt_wrap .tit,
+.pop_cont .txt_wrap .tit {
+  font-size: 22px;
+  color: #111;
+  font-weight: 600;
+}
+.pop_layout .pop_cont .txt_wrap .tit + .txt {
+  margin-top: 14px;
+}
+.pop_layout .pop_cont .txt_wrap .txt {
+  color: #444;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+/* 본인인증 */
+.tab_list {
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+}
+.tab_list > li {
+  flex: 1;
+  text-align: center;
+}
+.tab_list > li + li {
+}
+.tab_list > li > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: #111;
+  line-height: 40px;
+  font-size: 14px;
+  position: relative;
+}
+.tab_list > li.on > a {
+  font-weight: 600;
+}
+.tab_list > li.on > a:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #0055fd;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.tab_cont {
+  display: none;
+}
+#tab01 {
+  display: block;
+}
+.authen_list,
+.sub .cont_box.authen_list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.authen_list > li {
+  flex: 1;
+  text-align: center;
+  position: relative;
+}
+.authen_list > li + li:after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 20px;
+  background: #e4e4e4;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -10px;
+}
+.authen_list > li > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.authen_list .txt {
+  position: relative;
+  color: #111;
+}
+.authen_list .txt:before {
+  content: "";
+  display: block;
+  width: 55px;
+  height: 55px;
+  margin: 0 auto 10px;
+  border-radius: 100%;
+  background-color: #eff2f9;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.authen_list .txt.icon01:before {
+  background-image: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/authen_icon01.png");
+  background-size: 18px auto;
+}
+.authen_list .txt.icon02:before {
+  background-image: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/authen_icon02.png");
+  background-size: 32px auto;
+}
+.authen_list .txt.icon04:before {
+  background-image: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/agency_icon01.png");
+  background-size: 25px auto;
+}
+.authen_list .txt.icon05:before {
+  background-image: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/agency_icon02.png");
+  background-size: 25px auto;
+}
+.authen_list .txt.icon06:before {
+  background-image: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/agency_icon03.png");
+  background-size: 25px auto;
+}
+.input_timer {
+  position: relative;
+}
+.input_timer input {
+  padding-right: 50px;
+}
+.input_timer .time {
+  position: absolute;
+  color: #ff1212;
+  font-size: 14px;
+  right: 12px;
+  top: 0;
+  height: 40px;
+  line-height: 40px;
+}
+.productInfo_tit {
+  position: relative;
+  padding-left: 26px;
+}
+.productInfo_tit:after {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 0;
+  top: -2px;
+  background: url("https://dev.adtcapshome.co.kr:8443/static/home2/images/productInfo_tit_icon.png")
+    no-repeat center;
+  background-size: 100% auto;
+}
+
+/* 패스앱 로그인에서 ID 여러개 일때 */
+.tit_top {
+  position: relative;
+}
+.tit_top .txt_sub {
+  color: #111;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.f_blue {
+  color: #008ff5 !important;
+}
+.drop_id {
+  background: #e8f1fa;
+  padding: 12px 18px;
+  margin-top: 15px;
+  border-radius: 3px;
+  font-size: 20px;
+  color: #111;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.4;
+}
+.drop_id.find_id {
+  padding: 16px 18px;
+  font-size: 16px;
+  margin: 15px 15px 0;
+}
+
+/* loading */
+.loading {
+  background: rgba(0, 0, 0, 0.65)
+    url("https://dev.adtcapshome.co.kr:8443/static/home2/images/loading.gif")
+    no-repeat center;
+  background-size: 150px auto;
+}
+.loading::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 65px;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: url(https://dev.adtcapshome.co.kr:8443/static/home2/images/xxxhdpi_loading_logo.png)
+    no-repeat 50% 50%;
+  background-size: 220px;
+}
+
+@media only screen and (max-width: 360px) {
+  .login-top .logo {
+    padding-top: 58px;
+    font-size: 22px;
+    background-size: auto 45px;
+  }
+  .login-top .form-link li a {
+    font-size: 12px;
+  }
+  .login-top .btn-pass {
+    font-size: 15px;
+  }
+  .login-top .btn-pass span {
+    padding-left: 10px;
+  }
+}

@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)https://dev.adtcapshome.co.kr:8443/home2/main/login -->
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./caps_login_legacy_files/font.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./caps_login_legacy_files/swiper.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./caps_login_legacy_files/common.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./caps_login_legacy_files/login.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="./caps_login_legacy_files/popup.css"
+    />
+    <script
+      type="text/javascript"
+      src="./caps_login_legacy_files/jquery-1.9.1.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./caps_login_legacy_files/jquery-ui.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./caps_login_legacy_files/dateformat.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./caps_login_legacy_files/bootstrap.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./caps_login_legacy_files/swiper.min.js"
+    ></script>
+
+    <script
+      type="text/javascript"
+      src="./caps_login_legacy_files/vue.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./caps_login_legacy_files/base64.js"
+    ></script>
+    <script type="text/javascript">
+      var _ByNameBefore = "By&nbsp;";
+      var _BySystem = "SYSTEM";
+      String.prototype.replaceAll = function (str, replacements) {
+        var regex = new RegExp(str, "g");
+        var temp = this + "";
+        temp = temp.replace(regex, replacements);
+        return temp;
+      };
+
+      var parseVer = function (ver) {
+        return ver.split(".").map(function (v) {
+          return parseInt(v);
+        });
+      };
+      var compVer = function (v1, v2) {
+        var result = 0;
+        var s1 = parseVer(v1);
+        var s2 = parseVer(v2);
+        var len = Math.max(s1.length, s2.length);
+
+        for (var i = 0; i < len; i++) {
+          var x1 = s1[i] || 0;
+          var x2 = s2[i] || 0;
+
+          if (x1 > x2) {
+            result = 1;
+            break;
+          } else if (x1 < x2) {
+            result = -1;
+            break;
+          }
+        }
+
+        return result;
+      };
+
+      function transact(url, reqData, func, dim, errFunc) {
+        var data = {
+          header: { CHANNEL: "ADT_HOME_APP_SERVICE" },
+          body: { request: {} },
+        };
+        data.body.request = reqData;
+        if (dim) $(".loading").addClass("on");
+        $.ajax({
+          url: "/transaction/ADT_HOME_APP_SERVICE." + url,
+          type: "POST",
+          data: JSON.stringify(data),
+          contentType: "application/json; charset=utf-8",
+          dataType: "json",
+          success: function (r) {
+            if (dim) $(".loading").removeClass("on");
+            if (r.body.response.errCode) {
+              var err = {
+                code: r.body.response.errCode,
+                msg: r.body.response.errHelpMessage,
+              };
+              if (errFunc) {
+                errFunc(err);
+                return;
+              }
+              if (
+                r.body.response.errCode == "WEB_SECU_INVALID_SESSION" ||
+                r.body.response.errCode == "SYS00009"
+              ) {
+                if (!mobile.WEB_SECU_INVALID_SESSION) {
+                  alert("로그인 세션이 만료되었습니다.");
+                  mobile.WEB_SECU_INVALID_SESSION = true;
+                  location.href = "/home2/main/native_session_timeout";
+                }
+              } else {
+                if (err.code && err.msg) {
+                  alert(err.msg);
+                }
+              }
+              $(".loading").removeClass("on");
+            } else {
+              func(r);
+            }
+          },
+          error: function (errorResult, errorType, errorDetail) {
+            var errorCode = "SYS99999";
+            var errorMsg =
+              "서버가 응답하지 않습니다. 잠시 후 재시도 해주세요.\n";
+            if (errorResult != null && errorResult.readyState == 4) {
+              //서버로부터 응답 & 정상에러
+              if (errorResult.status == 200 || errorResult.status == 500) {
+                var errorResponse = JSON.parse(errorResult.responseText);
+                errorCode = errorResponse["body"]["response"]["errCode"];
+                errorMsg = errorResponse["body"]["response"]["errHelpMessage"];
+              }
+            }
+            console.log(errorCode);
+            console.log(errorMsg);
+            if (
+              errorCode !== "WEB_SECU_INVALID_SESSION" &&
+              errorCode !== "SYS00009"
+            ) {
+              //alert(errorMsg);
+              $(".loading").removeClass("on");
+            }
+            if (errorCode == "WEB_SECU_INVALID_SESSION") {
+              //새로고침
+              location.href = "/home2/main/login";
+            }
+            if (errorCode == "SYS00009") {
+              //alert(errorMsg);
+              $("#CommonSessionValidForm").submit();
+            }
+            $(".loading").removeClass("on");
+          },
+          complete: function (xhr) {
+            if (dim) $(".loading").removeClass("on");
+          },
+        });
+      }
+
+      function transactTimeout(url, reqData, func, dim, errFunc) {
+        var data = {
+          header: { CHANNEL: "ADT_HOME_APP_SERVICE" },
+          body: { request: {} },
+        };
+        data.body.request = reqData;
+        if (dim) $(".loading").addClass("on");
+        $.ajax({
+          url: "/transaction/ADT_HOME_APP_SERVICE." + url,
+          type: "POST",
+          data: JSON.stringify(data),
+          timeout: 10000,
+          contentType: "application/json; charset=utf-8",
+          dataType: "json",
+          success: function (r) {
+            if (dim) $(".loading").removeClass("on");
+            if (r.body.response.errCode) {
+              var err = {
+                code: r.body.response.errCode,
+                msg: r.body.response.errHelpMessage,
+              };
+              if (errFunc) {
+                errFunc(err);
+                return;
+              }
+              if (
+                r.body.response.errCode == "WEB_SECU_INVALID_SESSION" ||
+                r.body.response.errCode == "SYS00009"
+              ) {
+                if (!mobile.WEB_SECU_INVALID_SESSION) {
+                  alert("로그인 세션이 만료되었습니다.");
+                  mobile.WEB_SECU_INVALID_SESSION = true;
+                  location.href = "/home2/main/native_session_timeout";
+                }
+              } else {
+                if (err.code && err.msg) {
+                  alert(err.msg);
+                }
+              }
+              $(".loading").removeClass("on");
+            } else {
+              func(r);
+            }
+          },
+          error: function (errorResult, errorType, errorDetail) {
+            if (errorType == "timeout") {
+              if (errFunc) {
+                errFunc({
+                  code: errorResult.status,
+                  msg: errorResult.statusText,
+                });
+              }
+            } else {
+              var errorCode = "SYS99999";
+              var errorMsg =
+                "서버가 응답하지 않습니다. 잠시 후 재시도 해주세요.\n";
+              if (errorResult != null && errorResult.readyState == 4) {
+                //서버로부터 응답 & 정상에러
+                if (errorResult.status == 200 || errorResult.status == 500) {
+                  var errorResponse = JSON.parse(errorResult.responseText);
+                  errorCode = errorResponse["body"]["response"]["errCode"];
+                  errorMsg =
+                    errorResponse["body"]["response"]["errHelpMessage"];
+                }
+              }
+              console.log(errorCode);
+              console.log(errorMsg);
+              if (
+                errorCode !== "WEB_SECU_INVALID_SESSION" &&
+                errorCode !== "SYS00009"
+              ) {
+                //alert(errorMsg);
+                $(".loading").removeClass("on");
+              }
+              if (errorCode == "WEB_SECU_INVALID_SESSION") {
+                //새로고침
+                location.href = "/home2/main/login";
+              }
+              if (errorCode == "SYS00009") {
+                //alert(errorMsg);
+                $("#CommonSessionValidForm").submit();
+              }
+            }
+            $(".loading").removeClass("on");
+          },
+          complete: function (xhr) {
+            if (dim) $(".loading").removeClass("on");
+          },
+        });
+      }
+
+      function submit(url, params, method, target) {
+        if (!target) target = "";
+        params = params ? params : {};
+        method = method ? method : "post";
+
+        if (!url) {
+          $.alert("url은 필수값입니다.");
+          return false;
+        }
+        var elements = "";
+        $.each(params, function (key, value) {
+          if (method == "get") {
+            value = value + "";
+            value = Base64.encode(value);
+          }
+
+          elements +=
+            "<input type='hidden' name='" + key + "' value='" + value + "'>";
+        });
+        var form =
+          "<form method='" +
+          method +
+          "' action='" +
+          url +
+          "' target='" +
+          (target ? target : "") +
+          "'>" +
+          elements +
+          "</form>";
+        $(form).appendTo("body").submit().remove();
+      }
+
+      function commonInit(fn) {
+        transact("CommonInitService", {}, function (r) {
+          var user_info = r.body.response.user_info;
+          fn(user_info);
+        });
+      }
+
+      function addMinutes(date, minutes) {
+        return new Date(date.getTime() + minutes * 60000);
+      }
+
+      function addSecond(date, second) {
+        return new Date(date.getTime() + second * 1000);
+      }
+
+      function selSpace(vue, callback) {
+        transact("setSpaceService", {}, function (r) {
+          var data = r.body;
+          vue.spaceList = data.response.SetSpaceService;
+          for (var i = 0; i < vue.spaceList.length; i++) {
+            var space = vue.spaceList[i];
+            if (space.checked == "checked") {
+              vue.space_name = vue.spaceList[i].space_name;
+              break;
+            }
+          }
+
+          vue.$nextTick(function () {
+            $(
+              ".select_box .option_list li, .bg_overlay, .option_list .btn_close"
+            ).click(function () {
+              $(".option_list").removeClass("open");
+              $(".bg_overlay").removeClass("on");
+            });
+            $(".select_box .selected").click(function () {
+              $(this).next("div").addClass("open");
+              $(".bg_overlay").addClass("on");
+            });
+            $(".select_box .option_list li").click(function () {
+              var selected_option = $(this).children().text();
+              $(this)
+                .parents(".option_list")
+                .siblings(".selected")
+                .children(".place")
+                .text(selected_option);
+              $(".select_box .option_list li").removeClass("on");
+              $(this).addClass("on");
+            });
+            if (callback) callback(r);
+          });
+        });
+      }
+
+      function selSpace2(vue, callback) {
+        transact("setSpaceService2", {}, function (r) {
+          var data = r.body;
+          vue.spaceList = data.response.SetSpaceService;
+          for (var i = 0; i < vue.spaceList.length; i++) {
+            var space = vue.spaceList[i];
+            if (space.checked == "checked") {
+              vue.space_name = vue.spaceList[i].space_name;
+              break;
+            }
+          }
+
+          vue.$nextTick(function () {
+            $(
+              ".select_box .option_list li, .bg_overlay, .option_list .btn_close"
+            ).click(function () {
+              $(".option_list").removeClass("open");
+              $(".bg_overlay").removeClass("on");
+            });
+            $(".select_box .selected").click(function () {
+              $(this).next("div").addClass("open");
+              $(".bg_overlay").addClass("on");
+            });
+            $(".select_box .option_list li").click(function () {
+              var selected_option = $(this).children().text();
+              $(this)
+                .parents(".option_list")
+                .siblings(".selected")
+                .children(".place")
+                .text(selected_option);
+              $(".select_box .option_list li").removeClass("on");
+              $(this).addClass("on");
+            });
+            if (callback) callback(r);
+          });
+        });
+      }
+
+      function selMasterSpace(vue, callback) {
+        transact("ApproveFamilySpaceSelectService", {}, function (r) {
+          var data = r.body;
+          vue.spaceList = data.response.ApproveFamilySpaceSelectService;
+
+          for (var i = 0; i < vue.spaceList.length; i++) {
+            var space = vue.spaceList[i];
+            if (space.checked == "checked") {
+              vue.space = vue.spaceList[i];
+              break;
+            }
+          }
+
+          vue.$nextTick(function () {
+            $(
+              ".select_box .option_list li, .bg_overlay, .option_list .btn_close"
+            ).click(function () {
+              $(".option_list").removeClass("open");
+              $(".bg_overlay").removeClass("on");
+            });
+            $(".select_box .selected").click(function () {
+              $(this).next("div").addClass("open");
+              $(".bg_overlay").addClass("on");
+            });
+            $(".select_box .option_list li").click(function () {
+              var selected_option = $(this).children().text();
+              $(this)
+                .parents(".option_list")
+                .siblings(".selected")
+                .children(".place")
+                .text(selected_option);
+              $(".select_box .option_list li").removeClass("on");
+              $(this).addClass("on");
+            });
+
+            if (callback) callback(r);
+          });
+        });
+      }
+
+      function logout() {
+        localStorage.setItem("auto_login", "");
+        localStorage.setItem("auto_login2", "");
+
+        mobile.logout(function (data) {
+          transact("HomeLoginService/logout", data, function () {});
+        });
+      }
+
+      function setCookie(name, value, day) {
+        var date = new Date();
+        date.setTime(date.getTime() + day * 60 * 60 * 24 * 1000);
+        document.cookie =
+          name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
+      }
+
+      function getCookie(name) {
+        var value = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
+        return value ? value[2] : null;
+      }
+
+      function deleteCookie(name) {
+        var date = new Date();
+        document.cookie =
+          name + "= " + "; expires=" + date.toUTCString() + "; path=/";
+      }
+    </script>
+    <style>
+      [v-clock] {
+        display: none;
+      }
+    </style>
+
+    <title>홈 로그인</title>
+    <!-- 퍼블리셔 -->
+    <script
+      type="text/javascript"
+      src="./caps_login_legacy_files/common.js"
+    ></script>
+    <script type="text/javascript">
+      function AndroidHWBackEvt() {
+        $("#closePopup").click();
+        return false;
+      }
+
+      window.bootstrap.modules({
+        contextPath: "",
+      });
+
+      $(document).ready(function () {
+        window._env.channel = "ADT_HOME_APP";
+        window._env.pageInfo = {
+          title: "",
+          url: "",
+          menu_idx: "",
+        };
+        window._env.pageInfo.title = document.title;
+        window.bootstrap.init();
+
+        $("#closePopup")
+          .off()
+          .click(function () {
+            mobile.closePopupUI();
+          });
+      });
+    </script>
+    <script
+      type="text/javascript"
+      src="./caps_login_legacy_files/json2.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./caps_login_legacy_files/syworksA2W.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./caps_login_legacy_files/globalJS.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./caps_login_legacy_files/mobileJS.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./caps_login_legacy_files/transaction.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./caps_login_legacy_files/component.form.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./caps_login_legacy_files/component.input.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./caps_login_legacy_files/component.radio.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./caps_login_legacy_files/component.select.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./caps_login_legacy_files/component.grid.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./caps_login_legacy_files/component.page.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./caps_login_legacy_files/Osinfo.js"
+    ></script>
+
+    <style>
+      body.pop_layout {
+        padding-top: 0;
+        background: #ededed;
+      }
+      header {
+        display: none;
+      }
+    </style>
+
+    <meta name="decorator" content="home2.login" />
+    <script type="text/javascript">
+      var auto_login_flag = false;
+      var saveId = "";
+      $(document).ready(function () {
+        window._env.pageInfo = {
+          url: "/home2/main/login",
+          option: [],
+        };
+        window._env.pageInfo.title = document.title;
+
+        if (localStorage.getItem("PASSLoginYn") == "Y") {
+          $(".form-link li:eq(1) a").click();
+        }
+
+        mobile.getDeviceToken(function (result) {
+          console.log("cp_id:" + result.token);
+          console.log(result);
+          $("#loginForm input[name=cp_id]").val(result.token);
+          $("#loginForm input[name=os]").val(_env.mobile_type);
+        });
+
+        var save_id = localStorage.getItem("save_id");
+        if (save_id == "1") {
+          var user_id = localStorage.getItem("user_id");
+          if (user_id) {
+            $("#loginForm input[name=user_id]").val(user_id);
+          } else {
+            mobile.getKeyData("user_id", function (result) {
+              $("#loginForm input[name=user_id]").val(result.val);
+            });
+          }
+          $("#saveIdButton").prop("checked", true);
+        }
+
+        //자동로그인 변경
+        $("#autoLoginButton").bind("click", function () {
+          if (this.checked) {
+            auto_login_flag = true;
+            if (!$("#saveIdButton").prop("checked")) {
+              $("#saveIdButton").click();
+            }
+            localStorage.setItem("auto_login", "1");
+          } else {
+            auto_login_flag = false;
+            localStorage.setItem("auto_login", "");
+          }
+        });
+        $("#autoLoginButton2").bind("click", function () {
+          if (this.checked) {
+            auto_login_flag2 = true;
+            localStorage.setItem("auto_login2", "1");
+          } else {
+            auto_login_flag2 = false;
+            localStorage.setItem("auto_login2", "");
+          }
+        });
+
+        //아이디 저장
+        $("#saveIdButton").bind("click", function () {
+          if ($("#saveIdButton").prop("checked")) {
+            localStorage.setItem("save_id", "1");
+            //localStorage.setItem( "user_id" ,$( "#loginForm input[name=user_id]" ).val() );
+          } else {
+            localStorage.setItem("save_id", "0");
+            localStorage.setItem("user_id", "");
+          }
+        });
+
+        //고객센터 전화
+        $("#sendTelButton").bind("click", function () {
+          mobile.telephoneCall(_env.service_center);
+        });
+        $("#loginForm input[name=user_pw]").bind("click", function () {
+          setTimeout(function () {
+            $(document).scrollTop(120);
+          }, 200);
+        });
+        $("#loginButton").bind("click", function () {
+          //pinTest();
+          //PIN 입력화면 호출시 하단부에 출력할 메세지를 함께 포함해서 호출하는 샘플 코드
+          //메세지가 없을 경우에는 메세지가 출력되지 않는다.
+          $("#loginForm input[name=login_type]").val("A");
+          if ($("#loginForm input[name=user_id]").val() == "") {
+            alert("회원 아이디를 입력하세요.");
+            $("#loginForm input[name=user_id]").focus();
+            return false;
+          }
+          if ($("#loginForm input[name=user_pw]").val() == "") {
+            alert("비밀번호를 입력하세요.");
+            $("#loginForm input[name=user_pw]").focus();
+            return false;
+          }
+          var userId = toLowerUserId($("#loginForm input[name=user_id]").val());
+          $("#loginForm input[name=user_id]").val(userId);
+          //alert($("#loginForm input[name=user_id]").val());
+          //$(".loading").addClass("on");
+          $("#loginForm").submit();
+        });
+
+        $("#idDelete").click(function () {
+          $("#loginForm input[name=user_id]").val("");
+        });
+
+        $("#pwDelete").click(function () {
+          $("#loginForm input[name=user_pw]").val("");
+        });
+
+        mobile.getVersion(function (ret) {
+          if (ret != null && ret["ver"] != null) {
+            $("#appVersion").html(ret["ver"]);
+          }
+        });
+
+        var auto_login2 = localStorage.getItem("auto_login2");
+        if (auto_login2) {
+          $(".loading").addClass("on");
+          auto_login_flag2 = true;
+          console.log("패스앱 자동 로그인");
+          $("#loginForm input[name=os]").val(_env.mobile_type);
+          $("#autoLoginButton2").prop("checked", true);
+          passApp("");
+        }
+
+        //자동로그인
+        var auto_login = localStorage.getItem("auto_login");
+        if (auto_login) {
+          $(".loading").addClass("on");
+          $("#autoLoginButton").prop("checked", true);
+          auto_login_flag = true;
+          var token = localStorage.getItem("token");
+          if (token != null && token != "") {
+            $("#loginForm input[name=os]").val(_env.mobile_type);
+            $("#loginForm input[name=login_type]").val("T");
+            $("#loginForm input[name=auth_token]").val(token);
+            $("#loginForm").submit();
+          } else {
+            mobile.getKeyDataT("token", function (result) {
+              console.log("ID/PW 자동 로그인");
+              console.log(result);
+              if (result.val) {
+                $("#loginForm input[name=os]").val(_env.mobile_type);
+                $("#loginForm input[name=login_type]").val("T");
+                $("#loginForm input[name=auth_token]").val(result.val);
+                $("#loginForm").submit();
+              } else {
+                $(".loading").removeClass("on");
+                alert("자동 로그인이 실패하였습니다.");
+                localStorage.setItem("token", "");
+                mobile.setKeyData("token", "");
+                localStorage.setItem("auto_login", "");
+                mobile.report("autologin fail");
+                $("#autoLoginButton").prop("checked", false);
+              }
+            });
+          }
+        }
+      });
+      //아이디 소문자 전환
+      function toLowerUserId(userId) {
+        return String(userId).toLowerCase();
+      }
+      function pinTest() {
+        mobile.openPin(
+          {
+            msg: "메세지는 이렇게 출력이 될겁니다.메세지는 이렇게 출력이 될겁니다.",
+          },
+          function (result) {
+            if (result.result == "1") {
+              if (device_id != null && device_id != "") {
+                $("#hubSettingMoveForm input[name=device_id]").val(device_id);
+                $("#hubSettingMoveForm").submit();
+              } else {
+                alert(
+                  "올바르지 못한 허브 ID 입니다. 문제가 지속되면 관리자에게 문의 하세요."
+                );
+              }
+            }
+          }
+        );
+      }
+      //로그인 성공 후
+      function loginBefore(opt) {
+        if (
+          $("#loginForm input[name=login_type]").val() == "A" &&
+          $("#loginForm input[name=user_pw]").val().length < 8
+        ) {
+          $(".loading").removeClass("on");
+          alert("비밀번호 항목은 8자리 이상 입력해 주세요.");
+          return false;
+        }
+        return true;
+      }
+      function loginFail(data, message) {
+        $(".loading").removeClass("on");
+        if (data == "BIZ00050")
+          alert(
+            '초대자 승인이 필요합니다.\n\n(승인방법: App접속>우측상단 "三" (설정)클릭>가족회원관리>승인)'
+          );
+        else if (data == "SYS00009") alert("아이디/비밀번호를 확인해주세요.");
+        else if (data == "SYS00001")
+          alert("오류가 발생하였습니다. 잠시 후 재시도 해주세요.");
+        else if (data == "SYS00401") alert(message);
+        else if (data == "SYS00402") {
+          if (confirm(message)) {
+            location.href = "/home2/common/simpleMemberFindPw";
+          }
+        }
+
+        if (data == "SYS00009" || data == "SYS00401" || data == "SYS00402") {
+          if (localStorage) {
+            localStorage.setItem("token", "");
+            mobile.setKeyData("token", "");
+            localStorage.setItem("auto_login", "");
+          }
+          $("#autoLoginButton").prop("checked", false);
+          auto_login_flag = false;
+        }
+      }
+      function loginSuccess(data) {
+        var user_info = data["response"]["user_info"];
+
+        if (user_info != null) {
+          $("#user_pw").val("");
+          //logout 정보 저장
+          localStorage.setItem("token", "");
+          localStorage.setItem("user_id", "");
+          mobile.setKeyData("token", user_info["access_token"]);
+          mobile.setKeyData("user_id", user_info["user_id"]);
+
+          mobile.setSession(user_info, function (ret) {
+            //비밀번호 3개월
+            if (data["response"]["account_status"] == "1") {
+              $("#pwInitForm input[name=user_di]").val(user_info["user_di"]);
+              $("#pwInitForm input[name=user_id]").val(user_info["user_id"]);
+              $(".loading").removeClass("on");
+              $("#pwInitPopupForm").submit();
+            }
+            //장기미접속자
+            else if (data["response"]["account_status"] == "2") {
+              $(".loading").removeClass("on");
+              $("#loginLongForm").submit();
+            } else {
+              mobile.setSessionEnd("1"); //ty값:  "1": 로그인화면 종료...   "2": 보안 장소 변경 작업 종료
+              $(".loading").removeClass("on");
+              location.href = "/home2/common/left_menu";
+            }
+          });
+        } else {
+          $(".loading").removeClass("on");
+          alert("로그인에 실패 하였습니다.");
+          if (localStorage) {
+            localStorage.setItem("token", "");
+            localStorage.setItem("auto_login", "");
+            mobile.setKeyData("token", "");
+            mobile.setKeyData("user_id", "");
+          }
+          $("#autoLoginButton").prop("checked", false);
+          auto_login_flag = false;
+        }
+      }
+      function memberFindPw3MonthAlertSuccess(data) {
+        if (data["result"] == "1") {
+          $("#pwInitForm").submit();
+        } else {
+          mobile.home();
+        }
+      }
+      //비밀번호 input tag에서 space입력 막기
+      $(function () {
+        $("#user_pw").keyup(function () {
+          var data = $(this).val();
+          if (
+            /[^a-zA-Z0-9\{\}\[\]\/?.,;:|\)*~`!^\-_+@#$%&\\\=\(\'\"]/gi.test(
+              data
+            )
+          ) {
+            $(this).val(
+              data.replace(
+                /[^a-zA-Z0-9\{\}\[\]\/?.,;:|\)*~`!^\-_+@#$%&\\\=\(\'\"]/gi,
+                ""
+              )
+            );
+          }
+        });
+      });
+
+      function passApp(telecom) {
+        $(".loading").addClass("on");
+        //telecom : "", "S", "K", "L"
+        mobile.passApp(
+          telecom,
+          function (result) {
+            if (result.result == "1") {
+              /* 성공
+	 			{
+					result:1,
+	 			    code = 0000;
+	 			    error = "";
+	 			    message = "\Uc131\Uacf5\Uc785\Ub2c8\Ub2e4.";
+	 			    user =     {
+	 			        agegroup = 40;
+	 			        birthdate = "AYr970S1Nv/Lb96K9L934g==";
+	 			        birthday = "Dr0GGCj/6+mMqnFeadhsEw==";
+	 			        ci = "5LepN+GWKTHkEYZS3kJKRS5JgQGuLBjxnUyXhKmXhnMCaUcdrwrb9uNC9yAIZSF3mJKlaoF5tdatLS2NUIgcRwJy8jW70z1Qb/RKTLdpCRn7+r1hSwIj3YYOcjFvFErB";
+	 			        foreign = L;
+	 			        gender = M;
+	 			        name = "uUTP6c2rPuazld2eFIMLhA==";
+	 			        phoneNo = "zcjhlrCNDu38hHPegWIFAA==";
+	 			        plid = "6dab3441-25bf-419d-9c7b-902b6b9c3672";
+	 			        telcoCd = K;
+	 			    }
+	 			}
+				plid 로 user 조회.. 없으면 ID 로그인페이지 이동, 있으면 로그인
+				*/
+              var pass_id = result.user.plid;
+              var ci = result.user.ci;
+              ci = ci.replace(/\s/g, "+");
+              var cp_id = $("#loginForm input[name=cp_id]").val();
+              var os = $("#loginForm input[name=os]").val();
+
+              if (!ci) {
+                $(".loading").removeClass("on");
+                alert("패스앱 아이디가 없습니다.");
+                return;
+              }
+              passLogin(
+                { pass_id: pass_id, ci: ci, cp_id: cp_id, os: os },
+                result
+              );
+            } else {
+              $(".loading").removeClass("on");
+              alert("PASS앱 연동을 실패하였습니다.");
+            }
+          },
+          function (result) {
+            $(".loading").removeClass("on");
+            //통신사 선택
+            $("#popup1").addClass("on");
+          }
+        );
+      }
+
+      function passLogin(data, result) {
+        transact(
+          "HomeLoginService/passIdList",
+          data,
+          function (r) {
+            var response = r.body.response;
+            if (response.result.length > 0) {
+              if (response.result.length == 1) {
+                //패스로그인
+                transact(
+                  "HomeLoginService",
+                  {
+                    login_type: "P",
+                    ci: data.ci,
+                    cp_id: data.cp_id,
+                    os: data.os,
+                  },
+                  function (r) {
+                    mobile.setSession(
+                      r.body.response.user_info,
+                      function (ret) {
+                        mobile.setSessionEnd("1");
+                        location.href = "/home2/common/left_menu";
+                      }
+                    );
+                  }
+                );
+              } else {
+                //아이디 여러개
+                console.log(response.result);
+                v_popup2.setIdList(response.result);
+              }
+            } else {
+              submit("loginPassApp", {
+                pass_id: data.pass_id,
+                ci: data.ci,
+                cp_id: data.cp_id,
+                os: data.os,
+              });
+            }
+          },
+          true
+        );
+      }
+
+      function passAppClosed() {
+        $(".loading").removeClass("on");
+      }
+
+      function removeAutoLogin(type) {
+        if (type == "passApp") {
+          localStorage.setItem("auto_login2", "");
+          $("#autoLoginButton2").prop("checked", false);
+        } else if (type == "token") {
+          localStorage.setItem("auto_login", "");
+          $("#autoLoginButton").prop("checked", false);
+        }
+      }
+    </script>
+    <script
+      src="./caps_login_legacy_files/b6a2f09b5a"
+      async=""
+      type="text/javascript"
+    ></script>
+    <script
+      src="./caps_login_legacy_files/b6a2f09b5a(1)"
+      async=""
+      type="text/javascript"
+    ></script>
+  </head>
+  <body class="pop_layout">
+    <header>
+      <h1 class="tit">
+        <script>
+          document.write($("head title:eq(0)").text());
+        </script>
+        홈 로그인
+      </h1>
+      <a href="javascript:void(0)" id="closePopup" class="btn_close">닫기</a>
+    </header>
+
+    <!-- 로그인 성공후 이동-->
+    <form
+      id="moveForm"
+      method="post"
+      data-component="view"
+      action="https://dev.adtcapshome.co.kr:8443/home2/common/menuList"
+    >
+      <input type="hidden" name="FORM_REQUEST" />
+    </form>
+    <!-- 비밀번호 초기화 이동 -->
+    <form
+      id="pwInitForm"
+      method="post"
+      data-component="view"
+      action="https://dev.adtcapshome.co.kr:8443/home2/common/memberFindPw3Month"
+    >
+      <input type="hidden" name="FORM_REQUEST" />
+    </form>
+    <!-- 비밀번호 변경알림 팝업-->
+    <form
+      id="pwInitPopupForm"
+      method="post"
+      data-component="view"
+      action="https://dev.adtcapshome.co.kr:8443/home2/common/memberFindPw3MonthAlert"
+      data-callback="success:memberFindPw3MonthAlertSuccess"
+    >
+      <input type="hidden" name="FORM_REQUEST" />
+    </form>
+    <!-- 장기미접속자 이동 -->
+    <form
+      id="loginLongForm"
+      method="post"
+      data-component="view"
+      action="https://dev.adtcapshome.co.kr:8443/home2/common/memberFindPw3Month"
+    >
+      <input type="hidden" name="FORM_REQUEST" />
+    </form>
+    <!-- 아이디 찾기 이동 -->
+    <form
+      method="post"
+      data-component="view moveIdButton"
+      action="https://dev.adtcapshome.co.kr:8443/home2/common/simpleMemberFindId"
+      id="25cd88ab-0878-de9e-bc25-ed3cca1b3b4d"
+    >
+      <input type="hidden" name="FORM_REQUEST" />
+    </form>
+    <!-- 비밀번호 찾기 이동 -->
+    <form
+      method="post"
+      data-component="view movePwButton"
+      action="https://dev.adtcapshome.co.kr:8443/home2/common/simpleMemberFindPw"
+      id="173a56b2-8ec3-98ca-23da-329eb7967b30"
+    >
+      <input type="hidden" name="FORM_REQUEST" />
+    </form>
+    <div id="container">
+      <div class="login-w">
+        <form
+          id="loginForm"
+          data-component=""
+          data-service="HomeLoginService"
+          data-callback="before:loginBefore,success:loginSuccess,error:loginFail"
+          autocomplete="off"
+        >
+          <input type="hidden" name="login_type" value="A" />
+          <input type="hidden" name="auth_token" />
+          <input type="hidden" name="cp_id" value="346345345345" />
+          <input type="hidden" name="os" value="desktop" />
+          <div class="login-top">
+            <h1 class="logo">
+              <strong>ADT캡스</strong>가<br />지켜주는 우리집,<br />세이프홈
+              캡스홈
+            </h1>
+            <div class="login-form">
+              <ul class="form-link">
+                <li class="on">
+                  <a href="#tab01">인증로그인</a>
+                </li>
+                <li>
+                  <a href="#tab02">휴대폰 인증 로그인</a>
+                </li>
+              </ul>
+              <div class="tab_cont" id="tab01">
+                <ul class="form">
+                  <li>
+                    <p class="tit">아이디를 입력해주세요.</p>
+                    <div class="input_del">
+                      <input
+                        type="text"
+                        data-component="alphanumeric"
+                        name="user_id"
+                        data-name="아이디"
+                        title="아이디 입력"
+                        value=""
+                        placeholder="ID"
+                        maxlength="10"
+                        id="2933ed76-3354-6937-13ba-5e2758a6149c"
+                      />
+                      <a href="javascript:void(0)" id="idDelete" class="btn_del"
+                        >삭제</a
+                      >
+                    </div>
+                  </li>
+                  <li>
+                    <p class="tit">비밀번호를 입력해주세요.</p>
+                    <div class="input_del">
+                      <input
+                        type="password"
+                        data-component=""
+                        id="user_pw"
+                        name="user_pw"
+                        data-name="비밀번호"
+                        title="비밀번호 입력"
+                        value=""
+                        placeholder="PASSWORD"
+                        maxlength="20"
+                      />
+                      <a href="javascript:void(0)" id="pwDelete" class="btn_del"
+                        >삭제</a
+                      >
+                    </div>
+                  </li>
+                </ul>
+                <a href="javascript:void(0)" id="loginButton" class="btn-login"
+                  >로그인</a
+                >
+                <span class="id-save">
+                  <label class="login-chk" id="autoLoginLabel">
+                    <input
+                      type="checkbox"
+                      id="autoLoginButton"
+                      name="auto_login"
+                    />
+                    <span class="icon">자동 로그인</span>
+                  </label>
+                  <label class="login-chk ml20" id="saveIdLabel">
+                    <input type="checkbox" id="saveIdButton" name="id_save" />
+                    <span class="icon">아이디 저장</span>
+                  </label>
+                </span>
+              </div>
+
+              <!-- S : 221213 ADDED BY LEEKH -->
+              <div class="tab_cont" id="tab02">
+                <div class="pass-wrap">
+                  <p class="pass-info">
+                    <span class="ls-mo-login">휴대폰 본인인증</span>을 통해<br />아이디로
+                    자동 로그인하실 수 있습니다.
+                  </p>
+                </div>
+                <a
+                  href="javascript:void(0)"
+                  id="loginButton2"
+                  class="btn-mo-login"
+                  ><span>휴대폰번호 로그인</span></a
+                >
+              </div>
+              <!-- E : 221213 ADDED BY LEEKH -->
+            </div>
+            <ul class="login-find">
+              <li>
+                <a href="./caps_find_id_input.html">아이디 찾기</a>
+              </li>
+              <li>
+                <a
+                  href="https://dev.adtcapshome.co.kr:8443/home2/common/simpleMemberFindPw"
+                  >비밀번호 초기화</a
+                >
+              </li>
+              <li>
+                <a>회원가입</a>
+              </li>
+            </ul>
+          </div>
+          <div class="login-fixed-menu">
+            <ul class="login-menu">
+              <li>
+                <a
+                  href="javascript:mobile.openBrowser({url:&#39;https://www.skshieldus.com/kor/policy/adtcaps.do&#39;})"
+                >
+                  <strong>개인정보처리방침</strong>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0)" id="sendTelButton">
+                  고객상담센터 : 1588-6400
+                </a>
+              </li>
+              <li>
+                <a
+                  href="javascript:mobile.openBrowser({url:&#39;https://m.adtcaps.co.kr/customer_support/praise.asp&#39;})"
+                  >고객의 소리</a
+                >
+              </li>
+              <li>
+                <a href="javascript:void(0)">
+                  APP 버전:
+                  <span id="appVersion"></span>
+                </a>
+              </li>
+            </ul>
+            <p class="copy-txt">COPYRIGHT SK SHIELDUS. All Right Reserved.</p>
+            <!-- <ul class="login-fixed">
+						<li>
+							<a href="javascript:void(0)" id="moveIdButton">아이디 찾기&nbsp;&middot;&nbsp;비밀번호 찾기</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)" id="sendTelButton">
+								<strong>고객상담센터</strong>
+								<span>1588-6400</span>
+							</a>
+						</li>
+						<li><a href="#none;" id="movePwButton">비밀번호 초기화</a></li>
+						<li><a href="#none;" id="sendTelButton">고객상담센터: <span>1588-6400</span></a></li>
+					</ul> -->
+          </div>
+          <input type="hidden" name="FORM_REQUEST" />
+        </form>
+      </div>
+    </div>
+
+    <div class="pop_layout popup_wrap" id="popup1">
+      <div class="pop_tit">
+        <h2 class="tit">PASS 인증</h2>
+        <a
+          href="javascript:$(&#39;#popup1&#39;).removeClass(&#39;on&#39;)"
+          class="btn_close"
+          >닫기</a
+        >
+      </div>
+      <div class="pop_cont">
+        <div class="cont_box">
+          <div class="tit_top">
+            <p class="tit">이용중 통신사 선택</p>
+            <p class="txt_sub mt8">
+              이용중인 통신사를 선택하세요. 선택 후, PASS앱을 통해 로그인합니다.
+            </p>
+          </div>
+          <ul class="authen_list pl0 pr0 mt20">
+            <li>
+              <a href="javascript:void(0)">
+                <p class="txt icon04">SK telecom</p>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0)">
+                <p class="txt icon05">KT</p>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0)">
+                <p class="txt icon06">LG U+</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="no_bg_box pt0">
+          <p class="info_txt">
+            ⓘ 일부 선불폰/알뜰폰, 14세 미만 사용자는 이용이 어렵습니다.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="popup2" class="pop_layout popup_wrap">
+      <div class="pop_tit">
+        <h2 class="tit">아이디 선택</h2>
+        <a
+          href="javascript:$(&#39;#popup2&#39;).removeClass(&#39;on&#39;)"
+          class="btn_close"
+          >닫기</a
+        >
+      </div>
+      <div class="pop_cont cont_box">
+        <div class="txt_wrap">
+          <p class="tit tit_icon idFindResult">안녕하세요 고객님!</p>
+          <p class="txt">아이디를 선택 후, PASS앱을 통해 로그인합니다.</p>
+        </div>
+      </div>
+    </div>
+    <script>
+      var v_popup2 = new Vue({
+        el: "#popup2",
+        data: {
+          idList: [],
+        },
+        methods: {
+          login: function (rs) {
+            //2개이상 아이디 패스로그인
+            var cp_id = $("#loginForm input[name=cp_id]").val();
+            var os = $("#loginForm input[name=os]").val();
+            transact(
+              "HomeLoginService",
+              {
+                login_type: "P",
+                user_id: rs.user_id,
+                ci: rs.ci,
+                cp_id: cp_id,
+                os: os,
+              },
+              function (r) {
+                mobile.setSession(r.body.response.user_info, function (ret) {
+                  mobile.setSessionEnd("1"); //ty값:  "1": 로그인화면 종료...   "2": 보안 장소 변경 작업 종료
+                  location.href = "/home2/common/left_menu";
+                });
+              }
+            );
+          },
+          setIdList: function (list) {
+            this.idList = list;
+            this.$nextTick(function () {
+              $("#popup2").addClass("on");
+            });
+          },
+        },
+      });
+    </script>
+
+    <script type="text/javascript">
+      (function (w, d, a) {
+        w.__beusablerumclient__ = {
+          load: function (src) {
+            var b = d.createElement("script");
+            b.src = src;
+            b.async = true;
+            b.type = "text/javascript";
+            d.getElementsByTagName("head")[0].appendChild(b);
+          },
+        };
+        w.__beusablerumclient__.load(a);
+      })(
+        window,
+        document,
+        "//rum.beusable.net/script/b211014e144330u965/b6a2f09b5a"
+      );
+    </script>
+  </body>
+</html>

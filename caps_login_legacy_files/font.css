@@ -1,0 +1,134 @@
+/*nanumGothic*/
+/* @font-face {
+    font-family:'ng';
+    src: url('https://dev.adtcapshome.co.kr:8443/static/home2/fonts/NanumGothic-Regular.eot');
+   src: local('NanumGothic-Regular'), url('https://dev.adtcapshome.co.kr:8443/static/home2/fonts/NanumGothic-Regular.eot#iefix') format('embedded-opentype'), url('https://dev.adtcapshome.co.kr:8443/static/home2/fonts/NanumGothic-Regular.woff') format('woff'), url('https://dev.adtcapshome.co.kr:8443/static/home2/fontsNanumGothic-Regular.ttf') format('truetype');
+}
+
+nanumBarunGothic
+@font-face {
+    font-family:'nb';
+    src: url('https://dev.adtcapshome.co.kr:8443/static/home2/fonts/NanumBarunGothic/NanumBarunGothic.eot');
+   src: local('NanumBarunGothic'), url('https://dev.adtcapshome.co.kr:8443/static/home2/fonts/NanumBarunGothic/NanumBarunGothic.eot#iefix') format('embedded-opentype'), url('https://dev.adtcapshome.co.kr:8443/static/home2/fonts/NanumBarunGothic/NanumBarunGothic.woff') format('woff'), url('https://dev.adtcapshome.co.kr:8443/static/home2/fonts/NanumBarunGothic/NanumBarunGothic.ttf') format('truetype');
+}
+
+roboto
+@font-face {
+    font-family:'roboto';
+    src: url('https://dev.adtcapshome.co.kr:8443/static/home2/fonts/roboto/Roboto-Bold.eot');
+   src: local('Roboto-Bold'), url('https://dev.adtcapshome.co.kr:8443/static/home2/fonts/roboto/Roboto-Bold.eot#iefix') format('embedded-opentype'), url('https://dev.adtcapshome.co.kr:8443/static/home2/fonts/roboto/Roboto-Bold.woff') format('woff'), url('https://dev.adtcapshome.co.kr:8443/static/home2/fonts/roboto/Roboto-Bold.ttf') format('truetype');
+} */
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 100;
+  src: url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2)
+      format("woff2"),
+    url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff)
+      format("woff"),
+    url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf)
+      format("opentype");
+}
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 300;
+  src: url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff2)
+      format("woff2"),
+    url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff)
+      format("woff"),
+    url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.otf)
+      format("opentype");
+}
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2)
+      format("woff2"),
+    url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff)
+      format("woff"),
+    url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf)
+      format("opentype");
+}
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 500;
+  src: url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff2)
+      format("woff2"),
+    url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff)
+      format("woff"),
+    url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.otf)
+      format("opentype");
+}
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2)
+      format("woff2"),
+    url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff)
+      format("woff"),
+    url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf)
+      format("opentype");
+}
+@font-face {
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 900;
+  src: url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2)
+      format("woff2"),
+    url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff)
+      format("woff"),
+    url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf)
+      format("opentype");
+}
+
+/* Nanum Square */
+@font-face {
+  font-family: "Nanum Square";
+  font-style: normal;
+  font-weight: 200;
+  src: url("https://dev.adtcapshome.co.kr:8443/static/home2/font/NanumSquareL.eot");
+  src: url("https://dev.adtcapshome.co.kr:8443/static/home2/font/NanumSquareL.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://dev.adtcapshome.co.kr:8443/static/home2/font/NanumSquareL.woff")
+      format("woff"),
+    url("https://dev.adtcapshome.co.kr:8443/static/home2/font/NanumSquareL.ttf")
+      format("truetype");
+}
+@font-face {
+  font-family: "Nanum Square";
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://dev.adtcapshome.co.kr:8443/static/home2/font/NanumSquareR.eot");
+  src: url("https://dev.adtcapshome.co.kr:8443/static/home2/font/NanumSquareR.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://dev.adtcapshome.co.kr:8443/static/home2/font/NanumSquareR.woff")
+      format("woff"),
+    url("https://dev.adtcapshome.co.kr:8443/static/home2/font/NanumSquareR.ttf")
+      format("truetype");
+}
+@font-face {
+  font-family: "Nanum Square";
+  font-style: normal;
+  font-weight: 600;
+  src: url("https://dev.adtcapshome.co.kr:8443/static/home2/font/NanumSquareB.eot");
+  src: url("https://dev.adtcapshome.co.kr:8443/static/home2/font/NanumSquareB.eot?#iefix")
+      format("embedded-opentype"),
+    url("https://dev.adtcapshome.co.kr:8443/static/home2/font/NanumSquareB.woff")
+      format("woff"),
+    url("https://dev.adtcapshome.co.kr:8443/static/home2/font/NanumSquareB.ttf")
+      format("truetype");
+}
+/*@font-face {
+  font-family: 'Nanum Square';
+  font-style: normal;
+  font-weight: 600;
+  src: url('https://dev.adtcapshome.co.kr:8443/static/home2/font/NanumSquareEB.eot');
+  src: url('https://dev.adtcapshome.co.kr:8443/static/home2/font/NanumSquareEB.eot?#iefix') format('embedded-opentype'),
+       url('https://dev.adtcapshome.co.kr:8443/static/home2/font/NanumSquareEB.woff') format('woff'),
+       url('https://dev.adtcapshome.co.kr:8443/static/home2/font/NanumSquareEB.ttf') format('truetype');
+}*/

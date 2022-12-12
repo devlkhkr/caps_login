@@ -1,0 +1,60 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel='stylesheet' type='text/css' href='./caps_login_legacy_files/font.css')
+    link(rel='stylesheet' type='text/css' href='./caps_login_legacy_files/common.css')
+    link(rel='stylesheet' type='text/css' href='./caps_login_legacy_files/login.css')
+    link(rel='stylesheet' type='text/css' href='./caps_login_legacy_files/popup.css')
+    script(type='text/javascript' src='./caps_login_legacy_files/jquery-1.9.1.min.js')
+    script(type='text/javascript' src='./caps_login_legacy_files/jquery-ui.min.js')
+
+    title Document
+  body.sub.type_find_id
+    header
+      h1.tit 아이디 찾기
+      a#btnPrev.btn_back(href='javascript:void(0)')
+    .wrap_find_id
+      .banner_find_id
+      .tit_find_id 안녕하세요. 고객님!
+      .subtit_find_id 고객님 정보와 일치하는 아이디입니다.
+      .list_user_id
+        label(for="user_id_01")
+          input(type="checkbox" name="select_user_id" id="user_id_01")
+          .box_user_id
+            span.fake_radio 
+            span.user_id User ID
+        label(for="user_id_02")
+          input(type="checkbox" name="select_user_id" id="user_id_02")
+          .box_user_id
+            span.fake_radio 
+            span.user_id User ID
+        label(for="user_id_03")
+          input(type="checkbox" name="select_user_id" id="user_id_03")
+          .box_user_id
+            span.fake_radio 
+            span.user_id User ID
+        label(for="user_id_04")
+          input(type="checkbox" name="select_user_id" id="user_id_04")
+          .box_user_id
+            span.fake_radio 
+            span.user_id User ID
+      label.set_auto_login(for="cbx_auto_login")
+        input(type="checkbox" id="cbx_auto_login")
+        .fake_cbx
+        span.tit_auto_login 자동 로그인 설정
+        p.desc_auto_login 자동 로그인 설정하기를 선택하시면 캡스홈에서 로그인이 유지된 상태로 서비스를 이용하실 수 있습니다.
+      .btns_wrap
+        button(type="button") 비밀번호 변경
+        button(type="button").on 로그인
+
+
+script.
+  $(".list_user_id input").on("click", function () {
+    if($(this).prop("checked")) {
+      $("[name=" + $(this).attr("name") + "]").prop("checked", false);
+      $(this).prop("checked", true)
+    }
+  })
