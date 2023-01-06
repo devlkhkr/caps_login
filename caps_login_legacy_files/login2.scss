@@ -231,3 +231,16 @@ body.sub.type_find_id {
     }
   }
 }
+
+.hei_100_per {
+  height: 100%;
+}
+
+.find_id_result_scrolled {
+  height: calc(100% - 165px);
+  overflow: auto;
+}
+
+.find_id_result_fixed {
+  height: 165px;
+}
